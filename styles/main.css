@@ -22,6 +22,10 @@
     align-items: center;
 }
 
+.flex.align-end{
+    align-items:flex-end;
+}
+
 .flex.space-around{
     justify-content: space-around;
 }
@@ -51,6 +55,10 @@ main{
 .main-nav{
     background-color: brown;
     height: 3em;
+}
+
+.keyword-links > *{
+    margin-inline: 0.4em;
 }
 .main-gallery{
     margin-inline: auto;
