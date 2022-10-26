@@ -63,16 +63,17 @@ main{
 .main-gallery{
     margin-inline: auto;
     padding: 1em;
-    background-color: blue;
-    overflow-y: scroll;
+    background: linear-gradient(to top, #09203f 0%, #537895 100%);
     max-width: 980px;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    grid-auto-rows: 200px;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-auto-rows: 270px;
     grid-gap: 1em;
 }
 
 .main-gallery > *{
-    background-color: aliceblue;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 
 
