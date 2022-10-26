@@ -1,0 +1,68 @@
+    
+/* HELPERS */
+.clear-list{
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.full{
+    width: 100%;
+}
+/* FLEX SUBCLASSES */
+.flex{
+    display: flex;
+}
+
+.flex.column{
+    flex-direction: column;
+}
+
+.flex.align-center{
+    align-items: center;
+}
+
+.flex.space-around{
+    justify-content: space-around;
+}
+
+
+/* GRID HELPERS */
+
+.grid{
+    display: grid;
+}
+
+/* HEADER */
+
+header{
+    /* background-color: aqua; */
+    
+}
+nav{
+    background-color: blueviolet;
+}
+
+/* MAIN CONTENT */
+
+main{
+
+}
+.main-nav{
+    background-color: brown;
+    height: 3em;
+}
+.main-gallery{
+    margin-inline: auto;
+    padding: 1em;
+    background-color: blue;
+    overflow-y: scroll;
+    max-width: 980px;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-auto-rows: 200px;
+    grid-gap: 1em;
+}
+
+.main-gallery > *{
+    background-color: aliceblue;
+}
