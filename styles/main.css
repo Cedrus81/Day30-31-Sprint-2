@@ -29,10 +29,7 @@ html{
     color: var(--clr-1);
     background: var(--grad1);
 }
-/* HELPERS */
-.hidden{
-    display: none;
-}
+
 
 .clear-list{
     margin: 0;
@@ -193,8 +190,8 @@ header{
 }
 
 .controllers{
-    width: 525px;
-    height: 546px;
+    /* width: 525px;
+    height: 546px; */
     padding-inline: 3em;
     padding-block: 1.5em;
     border-radius: 30px;
@@ -232,4 +229,9 @@ header{
 
 .icon-white{
     filter: invert(100%) sepia(0%) saturate(7442%) hue-rotate(309deg) brightness(106%) contrast(98%);
+}
+
+/* HELPERS */
+.hidden{
+    display: none;
 }
