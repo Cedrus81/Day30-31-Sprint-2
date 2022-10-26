@@ -11,21 +11,21 @@
 
 <body onload="init()">
     <header class="full">
-        <nav class="flex align-center space-around">
+        <nav class="header-nav flex align-center space-around">
             <a href="#">
                 <h2 class="logo">Memeyahu</h2>
             </a>
-            <ul class="clear-list flex">
-                <li>Gallery</li>
-                <li>About Us</li>
+            <ul class="page-links clear-list flex">
+                <li class="page-link selected">Gallery</li>
+                <li class="page-link">About Us</li>
             </ul>
         </nav>
     </header>
-    <main>
+    <main class="main-content">
         <nav class="main-nav full flex space-around">
             <input type="text" placeholder="Search for meme">
             <div class="flex">
-                <ul class="keyword-links clear-list flex align-end">
+                <ul class="keyword-links clear-list flex align-center">
                 </ul>
                 <button>More</button>
             </div>
@@ -33,6 +33,9 @@
         <article class="main-gallery grid">
         </article>
     </main>
+    <script src="js/services/services-utils.js"></script>
+    <script src="js/services/service-storage.js"></script>
+    <script src="js/services/services-model.js"></script>
     <script src="js/main.js"></script>
 </body>
 

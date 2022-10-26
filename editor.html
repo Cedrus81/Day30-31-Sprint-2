@@ -21,10 +21,11 @@
             <ul class="clear-list flex">
                 <li>Gallery</li>
                 <li>About Us</li>
+                <a href="./index.html">to gallery</a>
             </ul>
         </nav>
     </header>
-    <main class="editor grid">
+    <main class="editor grid" onload="renderMeme(memeId = '000')">
         <canvas height="500" width="450"></canvas>
         <article class="controllers flex column">
             <input type="text" placeholder="Type here your text">
@@ -50,6 +51,9 @@
             </section>
         </article>
     </main>
+    <script src="js/services/services-utils.js"></script>
+    <script src="js/services/service-storage.js"></script>
+    <script src="js/services/services-model.js"></script>
     <script src="js/main.js"></script>
 </body>
 

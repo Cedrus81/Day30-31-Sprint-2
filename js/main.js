@@ -1,5 +1,8 @@
 'use strict'
+const MEME_STORAGE = 'memesDB'
 
+const EDITOR_URL = 'http://127.0.0.1:5500/editor.html'
+var gMemes
 var gKeywords = [
     { name: 'Men', value: 2 },
     { name: 'Dogs', value: 3 },
@@ -10,6 +13,7 @@ var gKeywords = [
 ]
 
 function init() {
+    gMemes = loadFromStorage(MEME_STORAGE) || createMemes()
     renderKeywords()
     renderGallery()
 }
@@ -27,55 +31,38 @@ function renderKeywords() {
 }
 
 function renderGallery() {
+
     const elGallery = document.querySelector('.main-gallery')
-    //get images
-    // for each, add inside .main-gallery
-    const images = getImages()
-    console.log(images);
-    images.forEach(image =>
-        elGallery.innerHTML += `<img class="gallery-item" src="${image.url}" alt="">`
+    const memes = getMemes()
+    console.log(memes);
+    memes.forEach(meme =>
+        elGallery.innerHTML += `<a href="http://127.0.0.1:5500/editor.html"><img class="gallery-item" onclick="renderMeme('${meme.id}')" src="${meme.url}" alt=""></a>`
     )
-    // debugger
+}
+
+
+function renderMeme(memeId) {
+    const meme = getMemeById(memeId)
+    console.log(meme);
 }
 
 
 
+//todo: move to AJAX
 
-
-// todo: move to service-model.js file
-function getKeyWords() {
-    gKeywords
-    return gKeywords
-}
-
-function getImages() {
-    const images = []
-    for (let i = 0; i < 18; i++) {
-        images[i] = {
-            id: makeId(),
-            url: `./images-square/${i + 1}.jpg`,
-            keywords: [],
+function onGoToEditor(url, cb, memeId) {
+    const XHR = new XMLHttpRequest()
+    XHR.onreadystatechange = () => {
+        if (XHR.readyState === XMLHttpRequest.DONE && XHR.status === 200) {
+            window.location.replace(url)
+            debugger
+            cb(memeId)
         }
     }
-    return images
-}
 
-
-// return the wanted size of the keyword on the search-bar. maximum allowed is 2.5em
-function setFontSize(value) {
-    return Math.min(2.5, 1 + value * 0.1)
+    XHR.open('GET', url)
+    XHR.send()
 }
 
 
 
-// todo: move to service - utils
-
-function makeId(length = 5) {
-    var txt = '';
-    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    for (var i = 0; i < length; i++) {
-        txt += characters.charAt(Math.floor(Math.random() * characters.length));
-    }
-
-    return txt;
-}
