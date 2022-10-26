@@ -1,8 +1,9 @@
 'use strict'
-const MEME_STORAGE = 'memesDB'
-
-const EDITOR_URL = 'http://127.0.0.1:5500/editor.html'
-var gMemes
+const IMG_STORAGE = 'imagesDB'
+const MY_MEME = 'myMemeDB'
+var gImages
+var gElCanvas = document.querySelector('canvas')
+var gCtx = document.querySelector('canvas').getContext('2d')
 var gKeywords = [
     { name: 'Men', value: 2 },
     { name: 'Dogs', value: 3 },
@@ -13,7 +14,7 @@ var gKeywords = [
 ]
 
 function init() {
-    gMemes = loadFromStorage(MEME_STORAGE) || createMemes()
+    gImages = loadFromStorage(IMG_STORAGE) || createMemes()
     renderKeywords()
     renderGallery()
 }
@@ -31,38 +32,21 @@ function renderKeywords() {
 }
 
 function renderGallery() {
-
     const elGallery = document.querySelector('.main-gallery')
-    const memes = getMemes()
-    console.log(memes);
-    memes.forEach(meme =>
-        elGallery.innerHTML += `<a href="http://127.0.0.1:5500/editor.html"><img class="gallery-item" onclick="renderMeme('${meme.id}')" src="${meme.url}" alt=""></a>`
+    const images = getImages()
+    images.forEach(img =>
+        elGallery.innerHTML += `<img class="gallery-item" onclick="onLoadEditor('${img.id}')" src="${img.url}" alt="">`
     )
 }
 
 
-function renderMeme(memeId) {
-    const meme = getMemeById(memeId)
-    console.log(meme);
+
+
+
+function doSwitchDisplay() {
+    const elEditor = document.querySelector('.editor')
+    const elGallery = document.querySelector('.main-content')
+    elEditor.classList.toggle('hidden')
+    elGallery.classList.toggle('hidden')
 }
-
-
-
-//todo: move to AJAX
-
-function onGoToEditor(url, cb, memeId) {
-    const XHR = new XMLHttpRequest()
-    XHR.onreadystatechange = () => {
-        if (XHR.readyState === XMLHttpRequest.DONE && XHR.status === 200) {
-            window.location.replace(url)
-            debugger
-            cb(memeId)
-        }
-    }
-
-    XHR.open('GET', url)
-    XHR.send()
-}
-
-
 

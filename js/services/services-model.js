@@ -1,5 +1,5 @@
-function getMemeById(memeId) {
-    return getMemes().find(meme => meme.id === memeId)
+function getImgById(imgId) {
+    return getImages().find(image => image.id === imgId)
 }
 function getKeyWords() {
     gKeywords
@@ -7,19 +7,19 @@ function getKeyWords() {
 }
 
 function createMemes() {
-    const memes = []
+    const images = []
     for (let i = 0; i < 18; i++) {
-        memes[i] = {
+        images[i] = {
             id: makeId(),
             url: `./images-square/${i + 1}.jpg`,
             keywords: [],
         }
     }
-    saveToStorage(MEME_STORAGE, memes)
+    saveToStorage(IMG_STORAGE, images)
 }
 
-function getMemes() {
-    return gMemes
+function getImages() {
+    return gImages
 }
 
 // return the wanted size of the keyword on the search-bar. maximum allowed is 2.5em

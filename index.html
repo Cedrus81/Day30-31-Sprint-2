@@ -12,7 +12,7 @@
 <body onload="init()">
     <header class="full">
         <nav class="header-nav flex align-center space-between">
-            <a href="#">
+            <a href="./index.html">
                 <h2 class="logo">Memeyahu</h2>
             </a>
             <ul class="page-links clear-list flex">
@@ -21,21 +21,56 @@
             </ul>
         </nav>
     </header>
-    <main class="main-content">
-        <nav class="main-nav full flex space-around">
-            <input class="text-input" type="text" placeholder="Search for meme">
-            <div class="keyword-controls flex ">
-                <ul class="keyword-links clear-list flex align-center">
-                </ul>
-                <button class="btn"><strong>More</strong></button>
-            </div>
-        </nav>
-        <article class="main-gallery grid">
-        </article>
+    <main>
+        <section class="main-content">
+            <nav class="main-nav full flex space-around">
+                <input class="text-input" type="text" placeholder="Search for meme">
+                <div class="keyword-controls flex ">
+                    <ul class="keyword-links clear-list flex align-center">
+                    </ul>
+                    <button class="btn"><strong>More</strong></button>
+                </div>
+            </nav>
+            <article class="main-gallery grid">
+            </article>
+        </section>
+
+        <section class="editor flex wrap space-evenly hidden">
+            <canvas height="546" width="476"></canvas>
+            <article class="controllers flex column space-between align-center">
+                <input type="text" placeholder="Type here your text" oninput="onDrawText(this.value)">
+                <section class="line-controls flex align-center">
+                    <button class="btn-editor color-primary"><img class="icon-white"
+                            src="./icons/arrow-down-up-across-line-solid.svg" alt=""></button>
+                    <button class="btn-editor color-add"><img class="icon-white" src="./icons/plus-solid.svg"
+                            alt=""></button>
+                    <button class="btn-editor color-delete"><img class="icon-white" src="./icons/trash-solid.svg"
+                            alt=""></button>
+                </section>
+                <section class="text-controls flex align-center">
+                    <button class="btn-editor"><img src="./icons/magnifying-glass-plus-solid.svg" alt=""></button>
+                    <button class="btn-editor"><img src="./icons/magnifying-glass-minus-solid.svg" alt="" sizes=""
+                            srcset=""></button>
+                    <button class="btn-editor"><img src="./icons/align-left-solid.svg" alt=""></button>
+                    <button class="btn-editor"><img src="./icons/align-center-solid.svg" alt=""></button>
+                    <button class="btn-editor"><img src="./icons/align-right-solid.svg" alt=""></button>
+                    <select class="btn-editor">font-select</select>
+                    <button class="btn-editor"><img src="./icons/underline-solid.svg" alt=""></button>
+                    <button class="btn-editor"><img src="./icons/palette-solid.svg" alt=""></button>
+                </section>
+                <section class="special-controls">Memes to be added here</section>
+                <section class="file-controls">
+                    <button>Share</button>
+                    <button>Download</button>
+                </section>
+            </article>
+        </section>
     </main>
     <script src="js/services/services-utils.js"></script>
     <script src="js/services/service-storage.js"></script>
     <script src="js/services/services-model.js"></script>
+    <script src="js/meme/meme-service/service-meme.js"></script>
+    <script src="./js/meme/meme-controller.js"></script>
     <script src="js/main.js"></script>
 </body>
 
