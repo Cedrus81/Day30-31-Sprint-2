@@ -39,10 +39,6 @@ function renderGallery() {
     )
 }
 
-
-
-
-
 function doSwitchDisplay() {
     const elEditor = document.querySelector('.editor')
     const elGallery = document.querySelector('.main-content')
@@ -50,3 +46,17 @@ function doSwitchDisplay() {
     elGallery.classList.toggle('hidden')
 }
 
+function onRandomMeme() {
+    debugger
+    const meme = getMeme()
+    //pick a random image
+    //pick a random setence
+    //update model
+    meme.url = getRandomImage()
+    meme.text = getRandomSetence()
+    //switch display
+    doSwitchDisplay()
+    setMemeFont() //todo placeholder only
+    //rendermeme
+    renderMeme()
+}

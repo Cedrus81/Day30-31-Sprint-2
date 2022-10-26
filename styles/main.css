@@ -22,12 +22,13 @@ html{
 /*  COMPONENTS */
 .btn{
     padding-inline: 1em;
-    font-size: large;
+    font-size: larger;
     border: none;
     box-shadow: --var(box-shadow);
     border-radius: 28px;
     color: var(--clr-1);
     background: var(--grad1);
+    cursor: pointer;
 }
 
 
@@ -154,6 +155,14 @@ header{
     gap: 1em;
 }
 
+.keyword-controls .btn{
+    font-size: larger;
+}
+
+.random-meme{
+    background: radial-gradient(circle at 12.3% 19.3%, rgb(85, 88, 218) 0%, rgb(95, 209, 249) 100.2%);
+}
+
 .keyword-links{
     box-shadow: var(--box-shadow);
     border-radius: 25px;
@@ -162,7 +171,8 @@ header{
 
 .keyword-links > *{
     color: var(--clr-1);
-    margin-inline: 0.4em;
+    margin-inline: 0.2em;
+    cursor: pointer;
 }
 .main-gallery{
     padding: 1em;
@@ -171,7 +181,8 @@ header{
     grid-gap: 1em;
 }
 
-.main-gallery > *{
+.gallery-item{
+    border-radius:1.5em;
     width: 100%;
     height: 100%;
     object-fit: contain;

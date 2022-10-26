@@ -26,3 +26,8 @@ function getImages() {
 function setFontSize(value) {
     return Math.min(2.8, 1 + value * 0.2)
 }
+
+function getRandomImage() {
+    const images = loadFromStorage(IMG_STORAGE)
+    return images[getRandomInt(images.length - 1)].url
+}

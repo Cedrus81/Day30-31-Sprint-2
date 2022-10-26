@@ -8,3 +8,7 @@ function makeId(length = 5) {
 
     return txt;
 }
+
+function getRandomInt(max, min = 0) {
+    return Math.floor(Math.random() * max) + min
+}
