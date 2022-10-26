@@ -5,7 +5,10 @@
 
 :root{
     --grad1: linear-gradient(-86deg, #33be6d 0%, #0c98b9 100%);
-    --clr1: #fefefe;
+    --clr-1: #fefefe;
+    --clr-delete: #cf1d37;
+    --clr-add: #42eb5c;
+    --clr-primary:#40b1ce;
     --clr-secondary: #383b42;
     --box-shadow: 0 3px 6px 1px rgba(0, 0, 0, 0.15);
 }
@@ -23,7 +26,7 @@ html{
     border: none;
     box-shadow: --var(box-shadow);
     border-radius: 28px;
-    color: var(--clr1);
+    color: var(--clr-1);
     background: var(--grad1);
 }
 /* HELPERS */
@@ -95,7 +98,7 @@ header{
 
 .logo{
     margin-inline: 0.2em;
-    color: var(--clr1);
+    color: var(--clr-1);
     text-decoration: #fefefe underline;
 }
 
@@ -103,13 +106,13 @@ header{
     margin-inline: 0.2em;
     border-radius: 20px;
     padding: 0.1em 0.9em;
-    color: var(--clr1);
+    color: var(--clr-1);
     background-color: transparent;
     cursor: pointer;
 }
 
 .page-link.selected{
-    background-color: var(--clr1);
+    background-color: var(--clr-1);
     box-shadow: var(--box-shadow);
     color: #21ac91;
     
@@ -153,7 +156,7 @@ header{
 }
 
 .keyword-links > *{
-    color: var(--clr1);
+    color: var(--clr-1);
     margin-inline: 0.4em;
 }
 .main-gallery{
@@ -184,19 +187,41 @@ header{
 .controllers{
     width: 525px;
     height: 546px;
-    /* box-shadow: 1px 5px 0 #bbc4d1, inset 0 5px 0 #ffffff; */
+    padding-inline: 3em;
+    padding-block: 1.5em;
     border-radius: 30px;
     background-color: #ebeef318;
 }
 
-.controllers > *{
-    margin-inline:3em;
-}
-
 .controllers input{
-    width: auto;
+    border: none;
+    width: 100%;
     height: 3em;
     box-shadow: 1px 5px 0 #bbc4d1, inset 0 5px 0 #ffffff;
-    border-radius: 28px;
+    border-radius: 1.525em;
     background-color: #ebeef3;
+}
+
+.btn-editor{
+    width: 3.5em;
+    height: 3.5em;
+    box-shadow: 1px 5px 0 rgba(92, 92, 92, 0.55), inset 0 5px 0 rgba(255, 255, 255, 0.58);
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.829);
+}
+
+.color-add{
+    background-color: var(--clr-add);
+}
+
+.color-primary{
+    background-color: var(--clr-primary);
+}
+
+.color-delete{
+    background-color: var(--clr-delete);
+}
+
+.icon-white{
+    filter: invert(100%) sepia(0%) saturate(7442%) hue-rotate(309deg) brightness(106%) contrast(98%);
 }

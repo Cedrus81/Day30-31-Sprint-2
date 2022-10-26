@@ -26,22 +26,26 @@
     </header>
     <main class="editor flex wrap" onload="renderMeme(memeId = '000')">
         <canvas height="546" width="476"></canvas>
-        <article class="controllers flex column space-around align-center">
+        <article class="controllers flex column space-between align-center">
             <input type="text" placeholder="Type here your text">
-            <section class="line-controls">
-                <button class="btn-editor">move line</button>
-                <button class="btn-editor">Add line</button>
-                <button class="btn-editor">Delete line</button>
+            <section class="line-controls flex align-center">
+                <button class="btn-editor color-primary"><img class="icon-white"
+                        src="./icons/arrow-down-up-across-line-solid.svg" alt=""></button>
+                <button class="btn-editor color-add"><img class="icon-white" src="./icons/plus-solid.svg"
+                        alt=""></button>
+                <button class="btn-editor color-delete"><img class="icon-white" src="./icons/trash-solid.svg"
+                        alt=""></button>
             </section>
-            <section class="text-controls">
-                <button class="btn-editor">font size +</button>
-                <button class="btn-editor">font size -</button>
-                <button class="btn-editor">align-left</button>
-                <button class="btn-editor">align-center</button>
-                <button class="btn-editor">align-right</button>
-                <button class="btn-editor">font-select</button>
-                <button class="btn-editor">add underline</button>
-                <button class="btn-editor">paint</button>
+            <section class="text-controls flex align-center">
+                <button class="btn-editor"><img src="./icons/magnifying-glass-plus-solid.svg" alt=""></button>
+                <button class="btn-editor"><img src="./icons/magnifying-glass-minus-solid.svg" alt="" sizes=""
+                        srcset=""></button>
+                <button class="btn-editor"><img src="./icons/align-left-solid.svg" alt=""></button>
+                <button class="btn-editor"><img src="./icons/align-center-solid.svg" alt=""></button>
+                <button class="btn-editor"><img src="./icons/align-right-solid.svg" alt=""></button>
+                <select class="btn-editor">font-select</select>
+                <button class="btn-editor"><img src="./icons/underline-solid.svg" alt=""></button>
+                <button class="btn-editor"><img src="./icons/palette-solid.svg" alt=""></button>
             </section>
             <section class="special-controls">Memes to be added here</section>
             <section class="file-controls">
