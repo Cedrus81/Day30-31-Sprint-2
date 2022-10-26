@@ -43,7 +43,7 @@ nav{
     background-color: blueviolet;
 }
 
-/* MAIN CONTENT */
+/* GALLERY MAIN CONTENT */
 
 main{
 
@@ -65,4 +65,16 @@ main{
 
 .main-gallery > *{
     background-color: aliceblue;
+}
+
+
+
+
+
+/* EDITOR MAIN */
+
+.editor{
+    margin: auto;
+    grid-gap: 3em;
+    grid-template-columns: 1fr 1fr;
 }
