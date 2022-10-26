@@ -14,35 +14,34 @@
 
 <body>
     <header class="full">
-        <nav class="flex align-center space-around">
+        <nav class="header-nav flex align-center space-between">
             <a href="#">
                 <h2 class="logo">Memeyahu</h2>
             </a>
-            <ul class="clear-list flex">
-                <li>Gallery</li>
-                <li>About Us</li>
-                <a href="./index.html">to gallery</a>
+            <ul class="page-links clear-list flex">
+                <li class="page-link selected">Gallery</li>
+                <li class="page-link">About Us</li>
             </ul>
         </nav>
     </header>
-    <main class="editor grid" onload="renderMeme(memeId = '000')">
-        <canvas height="500" width="450"></canvas>
-        <article class="controllers flex column">
+    <main class="editor flex wrap" onload="renderMeme(memeId = '000')">
+        <canvas height="546" width="476"></canvas>
+        <article class="controllers flex column space-around align-center">
             <input type="text" placeholder="Type here your text">
             <section class="line-controls">
-                <button>move line</button>
-                <button>Add line</button>
-                <button>Delete line</button>
+                <button class="btn-editor">move line</button>
+                <button class="btn-editor">Add line</button>
+                <button class="btn-editor">Delete line</button>
             </section>
             <section class="text-controls">
-                <button>font size +</button>
-                <button>font size -</button>
-                <button>align-left</button>
-                <button>align-center</button>
-                <button>align-right</button>
-                <button>font-select</button>
-                <button>add underline</button>
-                <button>paint</button>
+                <button class="btn-editor">font size +</button>
+                <button class="btn-editor">font size -</button>
+                <button class="btn-editor">align-left</button>
+                <button class="btn-editor">align-center</button>
+                <button class="btn-editor">align-right</button>
+                <button class="btn-editor">font-select</button>
+                <button class="btn-editor">add underline</button>
+                <button class="btn-editor">paint</button>
             </section>
             <section class="special-controls">Memes to be added here</section>
             <section class="file-controls">
