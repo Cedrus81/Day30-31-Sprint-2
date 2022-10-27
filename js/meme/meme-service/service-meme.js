@@ -24,6 +24,7 @@ function createMeme() {
         selectedLineIdx: 0,
         lines: [{
             fontSize: 48,
+            font: 'px Impact',
             fillStyle: 'white',
             textAlign: 'center',
             pos: {
@@ -32,7 +33,6 @@ function createMeme() {
             },
         }],
     }
-    gMeme.lines[0].font = gMeme.lines[0].fontSize + 'px Impact'
     gMeme.lines[0].lineWidth = gMeme.lines[0].fontSize / 15
 }
 
@@ -46,9 +46,11 @@ function getContext() {
 }
 
 function addNewLine() {
-    const { x, y } = getCurrentLine().pos
+    const { x, y } = getCurrentPosition()
     gMeme.lines.push({
+        text: 'New Line',
         fontSize: 48,
+        font: 'px Impact',
         fillStyle: 'white',
         textAlign: 'center',
         pos: {
@@ -56,12 +58,17 @@ function addNewLine() {
             y: y + 50
         },
     })
-
-    serSelectedLine(gMeme.lines.length - 1)
+    navLine()
 }
 
-function serSelectedLine(idx) {
-    gMeme.selectedLineIdx = idx
+function getCurrentPosition() {
+    //handles exception if all lines were deleted
+    try {
+        return pos = getCurrentLine().pos
+    }
+    catch (e) {
+        return pos = { x: gElCanvas.width / 2, y: gElCanvas.height / 10 }
+    }
 }
 
 function setMemeImg(imgId) {
@@ -76,7 +83,7 @@ function setMemeText(text) {
 
 
 function setLineContext(line) {
-    gCtx.font = line.font
+    gCtx.font = line.fontSize + line.font
     gCtx.fillStyle = line.fillStyle
     gCtx.lineWidth = line.lineWidth
     gCtx.textAlign = line.textAlign
@@ -86,6 +93,15 @@ function setTextAlign(value) {
     getCurrentLine().textAlign = value
 }
 
+function navLine() {
+    gMeme.selectedLineIdx++
+    if (gMeme.selectedLineIdx >= gMeme.lines.length) gMeme.selectedLineIdx = 0
+}
+
+function removeLine() {
+    gMeme.lines.splice(gMeme.selectedLineIdx, 1)
+    navLine()
+}
 
 function getRandomSetence() {
     return gMemeSetences[getRandomInt(gMemeSetences.length - 1)]

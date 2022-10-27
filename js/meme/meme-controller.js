@@ -13,16 +13,26 @@ function onNavLine() {
     navLine()
 }
 
-function navLine() {
-    gMeme.selectedLineIdx++
-    if (gMeme.selectedLineIdx >= gMeme.lines.length) gMeme.selectedLineIdx = 0
+function onRemoveLine() {
+    removeLine()
+    renderMeme()
 }
+
 
 function onAddLine() {
     addNewLine()
-
+    renderMeme()
 }
 
+function onSetFontSize(value) {
+    setLineFont(+value)
+    renderMeme()
+}
+
+function setLineFont(value) {
+    const line = getCurrentLine()
+    line.fontSize += value
+}
 
 function onDrawText(text) {
     setMemeText(text)

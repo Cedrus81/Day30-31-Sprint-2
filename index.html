@@ -49,13 +49,14 @@
                             src="./icons/arrow-down-up-across-line-solid.svg" alt=""></button>
                     <button class="btn-editor color-add" onclick="onAddLine()"><img class="icon-white"
                             src="./icons/plus-solid.svg" alt=""></button>
-                    <button class="btn-editor color-delete"><img class="icon-white" src="./icons/trash-solid.svg"
-                            alt=""></button>
+                    <button class="btn-editor color-delete" onclick="onRemoveLine()"><img class="icon-white"
+                            src="./icons/trash-solid.svg" alt=""></button>
                 </section>
                 <section class="text-controls flex align-center">
-                    <button class="btn-editor"><img src="./icons/magnifying-glass-plus-solid.svg" alt=""></button>
-                    <button class="btn-editor"><img src="./icons/magnifying-glass-minus-solid.svg" alt="" sizes=""
-                            srcset=""></button>
+                    <button value="1" class="btn-editor" onclick="onSetFontSize(this.value)"><img src="./icons/A+.png"
+                            alt=""></button>
+                    <button value="-1" class="btn-editor" onclick="onSetFontSize(this.value)"><img src="./icons/A-.png"
+                            alt=""></button>
                     <button value="right" class="btn-editor" onclick="onSetTextAlign(this.value)"><img
                             src="./icons/align-left-solid.svg" alt=""></button>
                     <button value="center" class="btn-editor" onclick="onSetTextAlign(this.value)"><img
