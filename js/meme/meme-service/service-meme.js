@@ -34,7 +34,8 @@ var gStickers = {
 function createMeme() {
     gMeme = {
         selectedLineIdx: 0,
-        lines: []
+        lines: [],
+        stickers: [],
     }
     addNewLine()
 }
@@ -136,10 +137,10 @@ function isLineClicked(pos) {
     gMeme.lines.some((line, idx) => {
         if (
             Math.abs(line.pos.y - pos.y) < (line.fontSize / 2) &&
-            Math.abs(line.pos.x - pos.x) < (line.fontSize * line.text.length) / 4) {
+            Math.abs(line.pos.x - pos.x) < (line.fontSize * line.text.length / 4)) {
             gMeme.selectedLineIdx = idx
             getCurrentLine().isDrag = true
-            document.body.style.cursor = 'grabbing'
+            document.querySelector('canvas').classList.add('grab')
             return true
         }
     })

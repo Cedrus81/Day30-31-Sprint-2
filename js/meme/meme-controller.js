@@ -44,14 +44,21 @@ function onDrawText(text) {
 
 function onNavStickers(value) {
     setStickersStartIdx(+value)
-    renderStickers()
+    renderStickerSelection()
 }
 
 
 function renderMeme() {
     gCtx.drawImage(gMeme.img, 0, 0)
-    renderLines
     renderLines()
+    renderStickers()
+}
+
+function renderStickers() {
+    gMeme.stickers.forEach(sticker => {
+        const { x, y } = sticker
+        gCtx.drawImage(sticker.img, x, y);
+    })
 }
 
 function renderLines() {
@@ -76,6 +83,19 @@ function onSaveMeme() {
     const memeCollection = getMemeCollection()
     memeCollection.push(meme)
     saveToStorage(MEMES_DB, memeCollection)
+}
+
+
+function onClickSticker(sticker) {
+    const img = new Image();
+    img.src = sticker.src
+    gMeme.stickers.push({
+        img,
+        x: gElCanvas.width / 2,
+        y: gElCanvas.height / 2,
+    }
+    )
+    renderMeme()
 }
 
 
@@ -120,7 +140,7 @@ function onUp(ev) {
     ev.preventDefault()
     const pos = getEvPos(ev)
     getCurrentLine().isDrag = false
-    document.body.style.cursor = 'grab'
+    document.querySelector('canvas').classList.remove('grab')
 }
 
 function onMove(ev) {

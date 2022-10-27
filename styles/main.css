@@ -190,6 +190,13 @@ header{
 
 /* EDITOR MAIN */
 
+canvas{
+    cursor: grab;
+}
+canvas.grab{
+    cursor: grabbing;
+}
+
 .editor{
     margin: auto;
     grid-gap: 3em;
