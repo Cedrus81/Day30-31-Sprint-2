@@ -93,6 +93,15 @@ function setTextAlign(value) {
     getCurrentLine().textAlign = value
 }
 
+function setLineFont(value) {
+    const line = getCurrentLine()
+    line.fontSize += value
+}
+
+function setLineFillStyle(color) {
+    getCurrentLine().fillStyle = color
+}
+
 function navLine() {
     gMeme.selectedLineIdx++
     if (gMeme.selectedLineIdx >= gMeme.lines.length) gMeme.selectedLineIdx = 0
@@ -101,6 +110,7 @@ function navLine() {
 function removeLine() {
     gMeme.lines.splice(gMeme.selectedLineIdx, 1)
     navLine()
+    //todo: disable all buttons if gMeme.line.length === 0
 }
 
 function getRandomSetence() {

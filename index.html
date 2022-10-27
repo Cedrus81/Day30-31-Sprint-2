@@ -65,7 +65,9 @@
                             src="./icons/align-right-solid.svg" alt=""></button>
                     <select class="btn-editor">font-select</select>
                     <button class="btn-editor"><img src="./icons/underline-solid.svg" alt=""></button>
-                    <button class="btn-editor"><img src="./icons/palette-solid.svg" alt=""></button>
+                    <button class="btn-editor">
+                        <input class="btn-editor" type="color" onchange="onSelectFillStyle(this.value)">
+                    </button>
                 </section>
                 <section class="special-controls">Memes to be added here</section>
                 <section class="file-controls">

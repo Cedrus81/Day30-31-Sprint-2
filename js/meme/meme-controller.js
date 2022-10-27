@@ -29,10 +29,11 @@ function onSetFontSize(value) {
     renderMeme()
 }
 
-function setLineFont(value) {
-    const line = getCurrentLine()
-    line.fontSize += value
+function onSelectFillStyle(color) {
+    setLineFillStyle(color)
+    renderMeme()
 }
+
 
 function onDrawText(text) {
     setMemeText(text)
