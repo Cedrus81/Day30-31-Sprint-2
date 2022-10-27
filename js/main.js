@@ -5,17 +5,10 @@ const MEMES_DB = 'memesDB'
 var gImages
 var gElCanvas = document.querySelector('canvas')
 var gCtx = document.querySelector('canvas').getContext('2d')
-var gKeywords = [
-    { name: 'Men', value: 2 },
-    { name: 'Dogs', value: 3 },
-    { name: 'Smile', value: 7 },
-    { name: 'Car', value: 1 },
-    { name: 'Success', value: 5 },
-    { name: 'Angry', value: 2 },
-]
+
 
 function init() {
-    gImages = loadFromStorage(IMG_STORAGE) || createMemes()
+    gImages = loadFromStorage(IMG_STORAGE) || createImages()
     renderKeywords()
     renderGallery()
 }
@@ -26,8 +19,9 @@ function renderKeywords() {
     let strHTML = ''
     const keywords = getKeyWords()
 
-    keywords.forEach((keyword, idx) => {
-        strHTML += `<li style="font-size: ${setFontSize(keyword.value)}em;" onclick="onClickKeyword('${keyword.name}')">${keyword.name}</li > `
+    keywords.every((keyword, idx) => {
+        strHTML += `<li style="font-size: ${setKeywordSize(keyword.value)}em;" onclick="onClickKeyword('${keyword.name}')">${keyword.name}</li > `
+        return (idx < 5) //limit amount shown to 6
     })
     elList.innerHTML = strHTML
 }
@@ -35,14 +29,13 @@ function renderKeywords() {
 function renderGallery() {
     const elGallery = document.querySelector('.main-gallery')
     const images = getImages()
+    let strHTML = ''
     images.forEach(img =>
-        elGallery.innerHTML += `<img class="gallery-item" onclick="onLoadEditor('${img.id}')" src="${img.url}" alt="">`
+        strHTML += `<img class="gallery-item" onclick="onLoadEditor('${img.id}')" src="${img.url}" alt="">`
     )
+    elGallery.innerHTML = strHTML
 }
-function getKeyWordByName(name) {
-    const keywords = getKeyWords()
-    return keywords.find(kw => kw.name === name)
-}
+
 
 function onClickKeyword(name) {
     const keyword = getKeyWordByName(name)
@@ -58,9 +51,8 @@ function doSwitchDisplay() {
 }
 
 function onRandomMeme() {
-    debugger
     const meme = getMeme()
-    meme.fontSize = getRandomInt(58)
+    meme.fontSize = getRandomInt(58, 16)
     setMemeFont() //todo placeholder only
     meme.url = getRandomImage()
     meme.text = getRandomSetence()
@@ -68,3 +60,10 @@ function onRandomMeme() {
     doSwitchDisplay()
     renderMeme()
 }
+
+function onFilterImagesByText(txt) {
+    setTxtFilter(txt)
+    renderGallery()
+}
+
+

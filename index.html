@@ -24,7 +24,8 @@
     <main>
         <section class="main-content">
             <nav class="main-nav full flex space-around">
-                <input class="text-input" type="text" placeholder="Search for meme">
+                <input class="text-input" type="text" placeholder="Search for meme"
+                    oninput="onFilterImagesByText(this.value)">
                 <div class="keyword-controls flex ">
                     <ul class="keyword-links clear-list flex align-center">
                     </ul>

@@ -138,22 +138,20 @@ header{
 }
 
 .text-input{
-    border-radius: 29px;
+    border-radius: 2em;
     background-color: #22252c;
     width: 26.5em;
+    font-size: 1.6em;
+    padding-inline-start: 1em;
+    color: var(--clr-1);
+    font-weight: 600;
 }
 
-.text-input::-webkit-input-placeholder {
-    position: relative;
-    top: 0.2em;
-    margin-block: auto;
-    padding-inline-start: 1em;
-    font-size: 1.6em;
-  }
 
 .keyword-controls{
     gap: 1em;
 }
+
 
 
 .random-meme{
