@@ -40,7 +40,9 @@ function renderGallery() {
 function onClickKeyword(name) {
     const keyword = getKeyWordByName(name)
     keyword.value++
+    setTxtFilter(name)
     renderKeywords()
+    renderGallery()
 }
 
 function doSwitchDisplay() {
