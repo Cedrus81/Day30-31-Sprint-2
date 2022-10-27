@@ -1,6 +1,7 @@
 'use strict'
 const IMG_STORAGE = 'imagesDB'
 const MY_MEME = 'myMemeDB'
+const MEMES_DB = 'memesDB'
 var gImages
 var gElCanvas = document.querySelector('canvas')
 var gCtx = document.querySelector('canvas').getContext('2d')
@@ -26,7 +27,7 @@ function renderKeywords() {
     const keywords = getKeyWords()
 
     keywords.forEach((keyword, idx) => {
-        strHTML += `<li style="font-size: ${setFontSize(keyword.value)}em;">${keyword.name}</li > `
+        strHTML += `<li style="font-size: ${setFontSize(keyword.value)}em;" onclick="onClickKeyword('${keyword.name}')">${keyword.name}</li > `
     })
     elList.innerHTML = strHTML
 }
@@ -37,6 +38,16 @@ function renderGallery() {
     images.forEach(img =>
         elGallery.innerHTML += `<img class="gallery-item" onclick="onLoadEditor('${img.id}')" src="${img.url}" alt="">`
     )
+}
+function getKeyWordByName(name) {
+    const keywords = getKeyWords()
+    return keywords.find(kw => kw.name === name)
+}
+
+function onClickKeyword(name) {
+    const keyword = getKeyWordByName(name)
+    keyword.value++
+    renderKeywords()
 }
 
 function doSwitchDisplay() {
@@ -49,14 +60,11 @@ function doSwitchDisplay() {
 function onRandomMeme() {
     debugger
     const meme = getMeme()
-    //pick a random image
-    //pick a random setence
-    //update model
+    meme.fontSize = getRandomInt(58)
+    setMemeFont() //todo placeholder only
     meme.url = getRandomImage()
     meme.text = getRandomSetence()
     //switch display
     doSwitchDisplay()
-    setMemeFont() //todo placeholder only
-    //rendermeme
     renderMeme()
 }

@@ -1,6 +1,7 @@
 var gMeme = {
     fontSize: 38
 }
+var gMemeCollection = [{}]
 var gMemeSetences = [
     `I have nothing but respect for you -- and not much of that`,
     `Anyone who says he can see through women is missing a lot`,
@@ -48,6 +49,11 @@ function setMemeFont() {
     gCtx.lineWidth = meme.fontSize / 15
     gCtx.textAlign = 'center'
 
+}
+
+//todo connect to HTML
+function setTextAlign(value) {
+    gMeme.textAlign = gCtx.textAlign = value
 }
 
 
