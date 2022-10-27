@@ -51,6 +51,7 @@ function getContext() {
 function addNewLine() {
     const { x, y } = getCurrentPosition()
     const newLine = {
+        isDragged: false,
         text: 'New Line',
         fontSize: 48,
         font: 'px Impact',
@@ -131,17 +132,15 @@ function getCurrentLine() {
 
 // TOUCH EVENTS
 
-function isInObject(pos) {
-    // console.log(pos);
-    gMeme.lines.forEach((line, idx) => {
-        console.log('y:', Math.abs(line.pos.y - pos.y), ' <', line.fontSize);
-        console.log('x:', Math.abs(line.pos.x - pos.x), ' <', (line.fontSize / 4) * line.text.length);
-
+function isLineClicked(pos) {
+    gMeme.lines.some((line, idx) => {
         if (
-            Math.abs(line.pos.y - pos.y) < line.fontSize &&
+            Math.abs(line.pos.y - pos.y) < (line.fontSize / 2) &&
             Math.abs(line.pos.x - pos.x) < (line.fontSize * line.text.length) / 4) {
-            console.log('is in borders!');
             gMeme.selectedLineIdx = idx
-        } else console.log('is not in borders');
+            getCurrentLine().isDrag = true
+            document.body.style.cursor = 'grabbing'
+            return true
+        }
     })
 }

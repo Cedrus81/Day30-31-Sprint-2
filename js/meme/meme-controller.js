@@ -112,24 +112,27 @@ function addTouchListeners() {
 function onDown(ev) {
     ev.preventDefault()
     const pos = getEvPos(ev)
-    isInObject(pos)
+    isLineClicked(pos)
     // gCtx.beginPath()
 }
-
-
-
-
 
 function onUp(ev) {
     ev.preventDefault()
     const pos = getEvPos(ev)
+    getCurrentLine().isDrag = false
+    document.body.style.cursor = 'grab'
 }
 
 function onMove(ev) {
-    // if (!gIsDraw) return
     ev.preventDefault()
+    if (!getCurrentLine().isDrag) {
+        document.body.style.cursor = 'grab'
+        return
+    }
     //Get the ev pos from mouse or touch
     const pos = getEvPos(ev)
+    getCurrentLine().pos = pos
+    renderMeme()
 }
 
 function getEvPos(ev) {
