@@ -11,10 +11,25 @@ function init() {
     gImages = loadFromStorage(IMG_STORAGE) || createImages()
     renderKeywords()
     renderGallery()
+    renderStickers()
     addListeners() // at meme/meme-controller.js
 }
 
-
+function renderStickers() {
+    const elSection = document.querySelector('.special-controls')
+    let strHTML = '<button value="-1" class="btn" onclick="onNavStickers(this.value)">&laquo;</button>'
+    // debugger
+    for (let i = 0; i < 3; i++) {
+        strHTML += `<img src="${gStickers.stickers[(gStickers.startIdx + i) % gStickers.stickers.length]}" alt="">`
+    }
+    // gStickers.every((sticker, idx) => {
+    //     strHTML += `<img src="${sticker}" alt="">`
+    //     if (idx >= 2) return false
+    //     return true
+    // })
+    strHTML += '<button value="1" class="btn" onclick="onNavStickers(this.value)">&raquo;</button>'
+    elSection.innerHTML = strHTML
+}
 
 function renderKeywords() {
     const elList = document.querySelector('.keyword-links')

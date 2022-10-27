@@ -41,6 +41,15 @@ function onDrawText(text) {
 
 }
 
+function onNavStickers(value) {
+    setStickersStartIdx(+value)
+    renderStickers()
+}
+
+function setStickersStartIdx(value) {
+    gStickers.startIdx = Math.abs(gStickers.startIdx + value)
+}
+
 function renderMeme() {
     gCtx.drawImage(gMeme.img, 0, 0)
     renderLines

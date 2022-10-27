@@ -5,6 +5,7 @@
 
 :root{
     --grad1: linear-gradient(-86deg, #33be6d 0%, #0c98b9 100%);
+    --grad2: radial-gradient(circle at 12.3% 19.3%, rgb(85, 88, 218) 0%, rgb(95, 209, 249) 100.2%);
     --clr-1: #fefefe;
     --clr-delete: #cf1d37;
     --clr-add: #42eb5c;
@@ -155,7 +156,7 @@ header{
 
 
 .random-meme{
-    background: radial-gradient(circle at 12.3% 19.3%, rgb(85, 88, 218) 0%, rgb(95, 209, 249) 100.2%);
+    background: var(--grad2);
 }
 
 .keyword-links{
@@ -237,6 +238,28 @@ header{
     filter: invert(100%) sepia(0%) saturate(7442%) hue-rotate(309deg) brightness(106%) contrast(98%);
 }
 
+.special-controls{
+    background-color: #fff;
+    border: none;
+    width: 100%;
+    border-radius: 1.525em;
+}
+
+.special-controls > *{
+    max-height: 7em;
+    max-width: 7em;
+    object-fit: contain;
+}
+
+.special-controls > .btn{
+    height: 100%;
+    background: var(--grad2);
+    border-radius: 1em;
+    transition: 0.2s;
+}
+.special-controls > .btn:hover{
+    background: radial-gradient(circle at 12.3% 19.3%, rgb(127, 128, 224) 0%, rgb(156, 221, 245) 100.2%);
+}
 /* HELPERS */
 .hidden{
     display: none;

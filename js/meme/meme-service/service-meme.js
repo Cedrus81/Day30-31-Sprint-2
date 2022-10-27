@@ -19,6 +19,18 @@ var gMemeSetences = [
     `If you have crazy friends you have everything you’ll ever need.`,
 ]
 
+var gStickers = {
+    startIdx: 0,
+    stickers: [
+        './stickers/ricky.png',
+        './stickers/angry-women.png',
+        './stickers/jordan-crying.png',
+        './stickers/smart.png',
+        './stickers/me-and-the-boys.png',
+        './stickers/cat-crying.png',
+    ],
+}
+
 function createMeme() {
     gMeme = {
         selectedLineIdx: 0,
