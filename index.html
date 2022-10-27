@@ -45,7 +45,7 @@
             <article class="controllers flex column space-between align-center">
                 <input type="text" placeholder="Type here your text" oninput="onDrawText(this.value)">
                 <section class="line-controls flex align-center">
-                    <button class="btn-editor color-primary"><img class="icon-white"
+                    <button class="btn-editor color-primary" onclick="onNavLine()"><img class="icon-white"
                             src="./icons/arrow-down-up-across-line-solid.svg" alt=""></button>
                     <button class="btn-editor color-add" onclick="onAddLine()"><img class="icon-white"
                             src="./icons/plus-solid.svg" alt=""></button>
@@ -56,11 +56,11 @@
                     <button class="btn-editor"><img src="./icons/magnifying-glass-plus-solid.svg" alt=""></button>
                     <button class="btn-editor"><img src="./icons/magnifying-glass-minus-solid.svg" alt="" sizes=""
                             srcset=""></button>
-                    <button value="left" class="btn-editor" onclick="onSetTextAlign(this.value)"><img
+                    <button value="right" class="btn-editor" onclick="onSetTextAlign(this.value)"><img
                             src="./icons/align-left-solid.svg" alt=""></button>
                     <button value="center" class="btn-editor" onclick="onSetTextAlign(this.value)"><img
                             src="./icons/align-center-solid.svg" alt=""></button>
-                    <button value="right" class="btn-editor" onclick="onSetTextAlign(this.value)"><img
+                    <button value="left" class="btn-editor" onclick="onSetTextAlign(this.value)"><img
                             src="./icons/align-right-solid.svg" alt=""></button>
                     <select class="btn-editor">font-select</select>
                     <button class="btn-editor"><img src="./icons/underline-solid.svg" alt=""></button>

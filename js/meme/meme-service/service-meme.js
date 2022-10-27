@@ -26,6 +26,10 @@ function createMeme() {
             fontSize: 48,
             fillStyle: 'white',
             textAlign: 'center',
+            pos: {
+                x: gElCanvas.width / 2,
+                y: gElCanvas.height / 10
+            },
         }],
     }
     gMeme.lines[0].font = gMeme.lines[0].fontSize + 'px Impact'
@@ -42,11 +46,21 @@ function getContext() {
 }
 
 function addNewLine() {
-    gMeme.lines.push({})
-    selectLine(gMeme.lines.length - 1)
+    const { x, y } = getCurrentLine().pos
+    gMeme.lines.push({
+        fontSize: 48,
+        fillStyle: 'white',
+        textAlign: 'center',
+        pos: {
+            x: x,
+            y: y + 50
+        },
+    })
+
+    serSelectedLine(gMeme.lines.length - 1)
 }
 
-function selectLine(idx) {
+function serSelectedLine(idx) {
     gMeme.selectedLineIdx = idx
 }
 
@@ -69,7 +83,7 @@ function setLineContext(line) {
 }
 
 function setTextAlign(value) {
-    gMeme.getCurrentLine().textAlign = value
+    getCurrentLine().textAlign = value
 }
 
 

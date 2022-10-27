@@ -4,16 +4,18 @@ function onNewMeme(imgId) {
     //model
     createMeme()
     setMemeImg(imgId)
-    setMemeFont() //todo placeholder only
     //DOM
     doSwitchDisplay()
     renderMeme()
 }
 
+function onNavLine() {
+    navLine()
+}
 
-
-function setMemeFontSize(params) {
-
+function navLine() {
+    gMeme.selectedLineIdx++
+    if (gMeme.selectedLineIdx >= gMeme.lines.length) gMeme.selectedLineIdx = 0
 }
 
 function onAddLine() {
@@ -38,10 +40,11 @@ function renderLines() {
     gMeme.lines.forEach(line => {
         if (line.text) {
             setLineContext(line)
-            gCtx.strokeText(line.text, gElCanvas.width / 2, gElCanvas.height / 10);
-            gCtx.fillText(line.text, gElCanvas.width / 2, gElCanvas.height / 10);
+            const { x, y } = line.pos
+            gCtx.strokeText(line.text, x, y);
+            gCtx.fillText(line.text, x, y);
         }
-    });
+    })
 }
 
 
@@ -71,7 +74,7 @@ function addListeners() {
     //Listen for resize ev 
     window.addEventListener('resize', () => {
         resizeCanvas()
-        renderCanvas()
+        renderMeme()
     })
 }
 
@@ -106,9 +109,7 @@ function onMove(ev) {
     const pos = getEvPos(ev)
 }
 
-
 function getEvPos(ev) {
-
     //Gets the offset pos , the default pos
     let pos = {
         x: ev.offsetX,
