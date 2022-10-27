@@ -41,14 +41,12 @@ function onDrawText(text) {
 
 }
 
+
 function onNavStickers(value) {
     setStickersStartIdx(+value)
     renderStickers()
 }
 
-function setStickersStartIdx(value) {
-    gStickers.startIdx = Math.abs(gStickers.startIdx + value)
-}
 
 function renderMeme() {
     gCtx.drawImage(gMeme.img, 0, 0)
@@ -114,8 +112,13 @@ function addTouchListeners() {
 function onDown(ev) {
     ev.preventDefault()
     const pos = getEvPos(ev)
-    gCtx.beginPath()
+    isInObject(pos)
+    // gCtx.beginPath()
 }
+
+
+
+
 
 function onUp(ev) {
     ev.preventDefault()

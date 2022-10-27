@@ -34,18 +34,9 @@ var gStickers = {
 function createMeme() {
     gMeme = {
         selectedLineIdx: 0,
-        lines: [{
-            fontSize: 48,
-            font: 'px Impact',
-            fillStyle: 'white',
-            textAlign: 'center',
-            pos: {
-                x: gElCanvas.width / 2,
-                y: gElCanvas.height / 10
-            },
-        }],
+        lines: []
     }
-    gMeme.lines[0].lineWidth = gMeme.lines[0].fontSize / 15
+    addNewLine()
 }
 
 
@@ -59,28 +50,30 @@ function getContext() {
 
 function addNewLine() {
     const { x, y } = getCurrentPosition()
-    gMeme.lines.push({
+    const newLine = {
         text: 'New Line',
         fontSize: 48,
         font: 'px Impact',
         fillStyle: 'white',
         textAlign: 'center',
         pos: {
-            x: x,
-            y: y + 50
+            x,
+            y,
         },
-    })
+    }
+    newLine.lineWidth = newLine.fontSize / 15
+    gMeme.lines.push(newLine)
     navLine()
 }
 
 function getCurrentPosition() {
     //handles exception if all lines were deleted
-    try {
-        return pos = getCurrentLine().pos
-    }
-    catch (e) {
-        return pos = { x: gElCanvas.width / 2, y: gElCanvas.height / 10 }
-    }
+    if (gMeme.lines.length === 0) return { x: gElCanvas.width / 2, y: gElCanvas.height / 10 }
+    return getCurrentLine().pos
+}
+
+function setStickersStartIdx(value) {
+    gStickers.startIdx = Math.abs(gStickers.startIdx + value)
 }
 
 function setMemeImg(imgId) {
@@ -131,4 +124,24 @@ function getRandomSetence() {
 
 function getCurrentLine() {
     return gMeme.lines[gMeme.selectedLineIdx]
+}
+
+
+
+
+// TOUCH EVENTS
+
+function isInObject(pos) {
+    // console.log(pos);
+    gMeme.lines.forEach((line, idx) => {
+        console.log('y:', Math.abs(line.pos.y - pos.y), ' <', line.fontSize);
+        console.log('x:', Math.abs(line.pos.x - pos.x), ' <', (line.fontSize / 4) * line.text.length);
+
+        if (
+            Math.abs(line.pos.y - pos.y) < line.fontSize &&
+            Math.abs(line.pos.x - pos.x) < (line.fontSize * line.text.length) / 4) {
+            console.log('is in borders!');
+            gMeme.selectedLineIdx = idx
+        } else console.log('is not in borders');
+    })
 }
