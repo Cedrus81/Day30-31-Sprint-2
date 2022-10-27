@@ -39,14 +39,16 @@
         </section>
 
         <section class="editor flex wrap space-evenly hidden">
-            <canvas height="546" width="476"></canvas>
+            <div class="canvas-container">
+                <canvas height="546" width="476"></canvas>
+            </div>
             <article class="controllers flex column space-between align-center">
                 <input type="text" placeholder="Type here your text" oninput="onDrawText(this.value)">
                 <section class="line-controls flex align-center">
                     <button class="btn-editor color-primary"><img class="icon-white"
                             src="./icons/arrow-down-up-across-line-solid.svg" alt=""></button>
-                    <button class="btn-editor color-add"><img class="icon-white" src="./icons/plus-solid.svg"
-                            alt=""></button>
+                    <button class="btn-editor color-add" onclick="onAddLine()"><img class="icon-white"
+                            src="./icons/plus-solid.svg" alt=""></button>
                     <button class="btn-editor color-delete"><img class="icon-white" src="./icons/trash-solid.svg"
                             alt=""></button>
                 </section>
@@ -54,9 +56,12 @@
                     <button class="btn-editor"><img src="./icons/magnifying-glass-plus-solid.svg" alt=""></button>
                     <button class="btn-editor"><img src="./icons/magnifying-glass-minus-solid.svg" alt="" sizes=""
                             srcset=""></button>
-                    <button class="btn-editor"><img src="./icons/align-left-solid.svg" alt=""></button>
-                    <button class="btn-editor"><img src="./icons/align-center-solid.svg" alt=""></button>
-                    <button class="btn-editor"><img src="./icons/align-right-solid.svg" alt=""></button>
+                    <button value="left" class="btn-editor" onclick="onSetTextAlign(this.value)"><img
+                            src="./icons/align-left-solid.svg" alt=""></button>
+                    <button value="center" class="btn-editor" onclick="onSetTextAlign(this.value)"><img
+                            src="./icons/align-center-solid.svg" alt=""></button>
+                    <button value="right" class="btn-editor" onclick="onSetTextAlign(this.value)"><img
+                            src="./icons/align-right-solid.svg" alt=""></button>
                     <select class="btn-editor">font-select</select>
                     <button class="btn-editor"><img src="./icons/underline-solid.svg" alt=""></button>
                     <button class="btn-editor"><img src="./icons/palette-solid.svg" alt=""></button>

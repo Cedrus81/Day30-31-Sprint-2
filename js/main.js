@@ -11,7 +11,9 @@ function init() {
     gImages = loadFromStorage(IMG_STORAGE) || createImages()
     renderKeywords()
     renderGallery()
+    addListeners() // at meme/meme-controller.js
 }
+
 
 
 function renderKeywords() {
@@ -31,7 +33,7 @@ function renderGallery() {
     const images = getImages()
     let strHTML = ''
     images.forEach(img =>
-        strHTML += `<img class="gallery-item" onclick="onLoadEditor('${img.id}')" src="${img.url}" alt="">`
+        strHTML += `<img class="gallery-item" onclick="onNewMeme('${img.id}')" src="${img.url}" alt="">`
     )
     elGallery.innerHTML = strHTML
 }
@@ -74,11 +76,7 @@ function renderKeywordDatalist() {
     const kws = getKeyWords()
     let strHTML = ''
     let count = 0
-    // debugger
     kws.every(kw => {
-        // console.log(kw.name.toLowerCase(), gFilters.txt.toLowerCase());
-
-        // console.log(kw.name.toLowerCase().includes(gFilters.txt.toLowerCase()));
         if (kw.name.toLowerCase().includes(gFilters.txt.toLowerCase())) {
             strHTML += `<option value="${kw.name}"></option>`
             count++
@@ -88,4 +86,7 @@ function renderKeywordDatalist() {
     })
     elDatalist.innerHTML = strHTML
 }
+
+
+
 

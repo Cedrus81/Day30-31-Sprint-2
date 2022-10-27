@@ -1,7 +1,5 @@
-var gMeme = {
-    fontSize: 38
-}
-var gMemeCollection = [{}]
+var gMeme
+var gMemeCollection = []
 var gMemeSetences = [
     `I have nothing but respect for you -- and not much of that`,
     `Anyone who says he can see through women is missing a lot`,
@@ -21,6 +19,20 @@ var gMemeSetences = [
     `If you have crazy friends you have everything you’ll ever need.`,
 ]
 
+function createMeme() {
+    gMeme = {
+        selectedLineIdx: 0,
+        lines: [{
+            fontSize: 48,
+            fillStyle: 'white',
+            textAlign: 'center',
+        }],
+    }
+    gMeme.lines[0].font = gMeme.lines[0].fontSize + 'px Impact'
+    gMeme.lines[0].lineWidth = gMeme.lines[0].fontSize / 15
+}
+
+
 function getMeme() {
     return gMeme
 }
@@ -29,34 +41,42 @@ function getContext() {
     return gCtx
 }
 
+function addNewLine() {
+    gMeme.lines.push({})
+    selectLine(gMeme.lines.length - 1)
+}
+
+function selectLine(idx) {
+    gMeme.selectedLineIdx = idx
+}
+
 function setMemeImg(imgId) {
-    const meme = getMeme()
-    meme.url = getImgById(imgId).url
-    saveToStorage(MY_MEME, meme)
+    const img = new Image();
+    img.src = getImgById(imgId).url
+    gMeme.img = img
 }
 
 function setMemeText(text) {
-    const meme = getMeme()
-    meme.text = text
+    gMeme.lines[gMeme.selectedLineIdx].text = text
 }
 
 
-//todo: set it dinamically through the controls
-function setMemeFont() {
-    const meme = getMeme()
-    gCtx.font = meme.fontSize + 'px Impact';
-    gCtx.fillStyle = 'white'
-    gCtx.lineWidth = meme.fontSize / 15
-    gCtx.textAlign = 'center'
-
+function setLineContext(line) {
+    gCtx.font = line.font
+    gCtx.fillStyle = line.fillStyle
+    gCtx.lineWidth = line.lineWidth
+    gCtx.textAlign = line.textAlign
 }
 
-//todo connect to HTML
 function setTextAlign(value) {
-    gMeme.textAlign = gCtx.textAlign = value
+    gMeme.getCurrentLine().textAlign = value
 }
 
 
 function getRandomSetence() {
     return gMemeSetences[getRandomInt(gMemeSetences.length - 1)]
+}
+
+function getCurrentLine() {
+    return gMeme.lines[gMeme.selectedLineIdx]
 }
