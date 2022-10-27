@@ -63,7 +63,27 @@ function onRandomMeme() {
 
 function onFilterImagesByText(txt) {
     setTxtFilter(txt)
+    renderKeywordDatalist()
     renderGallery()
 }
 
+function renderKeywordDatalist() {
+    const elDatalist = document.querySelector('#keyList')
+    const kws = getKeyWords()
+    let strHTML = ''
+    let count = 0
+    // debugger
+    kws.every(kw => {
+        // console.log(kw.name.toLowerCase(), gFilters.txt.toLowerCase());
+
+        // console.log(kw.name.toLowerCase().includes(gFilters.txt.toLowerCase()));
+        if (kw.name.toLowerCase().includes(gFilters.txt.toLowerCase())) {
+            strHTML += `<option value="${kw.name}"></option>`
+            count++
+        }
+        if (count === 4) return false // limit datalist size to 4
+        return true
+    })
+    elDatalist.innerHTML = strHTML
+}
 
