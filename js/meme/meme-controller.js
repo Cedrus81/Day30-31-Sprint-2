@@ -50,26 +50,27 @@ function onNavStickers(value) {
 
 function renderMeme() {
     gCtx.drawImage(gMeme.img, 0, 0)
-    renderLines()
-    renderStickers()
+    renderItems()
 }
 
-function renderStickers() {
-    gMeme.stickers.forEach(sticker => {
-        const { x, y } = sticker
-        gCtx.drawImage(sticker.img, x, y);
-    })
-}
-
-function renderLines() {
-    gMeme.lines.forEach(line => {
-        if (line.text) {
-            setLineContext(line)
-            const { x, y } = line.pos
-            gCtx.strokeText(line.text, x, y);
-            gCtx.fillText(line.text, x, y);
+function renderItems() {
+    gMeme.items.forEach(item => {
+        const { x, y } = item
+        switch (item.type) {
+            case 'line':
+                renderLine(item, x, y)
+                break
+            case 'sticker':
+                gCtx.drawImage(item.img, x, y, item.width, item.height)
+                break
         }
     })
+}
+
+function renderLine(line, x, y) {
+    setLineContext(line)
+    gCtx.strokeText(line.text, x, y);
+    gCtx.fillText(line.text, x, y);
 }
 
 
@@ -86,21 +87,10 @@ function onSaveMeme() {
 }
 
 
-function onClickSticker(sticker) {
-    const img = new Image();
-    img.src = sticker.src
-    gMeme.stickers.push({
-        img,
-        x: gElCanvas.width / 2,
-        y: gElCanvas.height / 2,
-    }
-    )
+function onAddSticker(sticker) {
+    addSticker(sticker)
     renderMeme()
 }
-
-
-
-
 
 
 
@@ -132,28 +122,51 @@ function addTouchListeners() {
 function onDown(ev) {
     ev.preventDefault()
     const pos = getEvPos(ev)
-    isLineClicked(pos)
-    // gCtx.beginPath()
+    isObjectClicked(pos)
 }
 
 function onUp(ev) {
     ev.preventDefault()
     const pos = getEvPos(ev)
-    getCurrentLine().isDrag = false
+    getCurrentItem().isDrag = false
     document.querySelector('canvas').classList.remove('grab')
 }
 
 function onMove(ev) {
     ev.preventDefault()
-    if (!getCurrentLine().isDrag) {
+    if (!getCurrentItem().isDrag) {
         document.body.style.cursor = 'grab'
         return
     }
     //Get the ev pos from mouse or touch
-    const pos = getEvPos(ev)
-    getCurrentLine().pos = pos
+    const { x, y } = getEvPos(ev)
+    moveItem(x, y)
     renderMeme()
 }
+
+function moveItem(x, y) {
+    const item = getCurrentItem()
+    switch (item.type) {
+        case 'line':
+            item.x = x
+            item.y = y + (item.fontSize / 2)
+            break
+        case 'sticker':
+            item.x = x - (item.width / 2)
+            item.y = y - (item.height / 2)
+            break
+    }
+}
+
+function moveLine(line, x, y) {
+
+}
+
+function moveSticker(sticker, x, y) {
+
+}
+
+
 
 function getEvPos(ev) {
     //Gets the offset pos , the default pos

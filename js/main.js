@@ -19,7 +19,7 @@ function renderStickerSelection() {
     const elSection = document.querySelector('.special-controls')
     let strHTML = '<button value="-1" class="btn" onclick="onNavStickers(this.value)">&laquo;</button>'
     for (let i = 0; i < 3; i++) {
-        strHTML += `<img onclick="onClickSticker(this)" src="${gStickers.stickers[(gStickers.startIdx + i) % gStickers.stickers.length]}" alt="">`
+        strHTML += `<img onclick="onAddSticker(this)" src="${gStickers.stickers[(gStickers.startIdx + i) % gStickers.stickers.length]}" alt="">`
     }
     strHTML += '<button value="1" class="btn" onclick="onNavStickers(this.value)">&raquo;</button>'
     elSection.innerHTML = strHTML

@@ -33,9 +33,8 @@ var gStickers = {
 
 function createMeme() {
     gMeme = {
-        selectedLineIdx: 0,
-        lines: [],
-        stickers: [],
+        selectedItemIdx: 0,
+        items: [],
     }
     addNewLine()
 }
@@ -50,28 +49,37 @@ function getContext() {
 }
 
 function addNewLine() {
-    const { x, y } = getCurrentPosition()
+    const { x, y } = { x: gElCanvas.width / 2, y: gElCanvas.height / 8 }
     const newLine = {
+        type: 'line',
         isDragged: false,
         text: 'New Line',
         fontSize: 48,
         font: 'px Impact',
         fillStyle: 'white',
         textAlign: 'center',
-        pos: {
-            x,
-            y,
-        },
+        x,
+        y,
     }
     newLine.lineWidth = newLine.fontSize / 15
-    gMeme.lines.push(newLine)
-    navLine()
+    gMeme.items.push(newLine)
+    gMeme.selectedItemIdx = gMeme.items.length - 1
 }
 
-function getCurrentPosition() {
-    //handles exception if all lines were deleted
-    if (gMeme.lines.length === 0) return { x: gElCanvas.width / 2, y: gElCanvas.height / 10 }
-    return getCurrentLine().pos
+function addSticker(sticker) {
+    const img = new Image();
+    img.src = sticker.src
+    const { width, height } = setStickerSize(img)
+    gMeme.items.push({
+        type: 'sticker',
+        isDrag: false,
+        x: 0,
+        y: 0,
+        img,
+        width,
+        height
+    })
+    gMeme.selectedItemIdx = gMeme.items.length - 1
 }
 
 function setStickersStartIdx(value) {
@@ -85,9 +93,8 @@ function setMemeImg(imgId) {
 }
 
 function setMemeText(text) {
-    gMeme.lines[gMeme.selectedLineIdx].text = text
+    gMeme.items[gMeme.selectedItemIdx].text = text
 }
-
 
 function setLineContext(line) {
     gCtx.font = line.fontSize + line.font
@@ -110,38 +117,75 @@ function setLineFillStyle(color) {
 }
 
 function navLine() {
-    gMeme.selectedLineIdx++
-    if (gMeme.selectedLineIdx >= gMeme.lines.length) gMeme.selectedLineIdx = 0
+    gMeme.selectedItemIdx++
+    if (gMeme.selectedItemIdx >= gMeme.items.length) gMeme.selectedItemIdx = 0
 }
 
-function removeLine() {
-    gMeme.lines.splice(gMeme.selectedLineIdx, 1)
-    navLine()
-    //todo: disable all buttons if gMeme.line.length === 0
+function removeItem() {
+    gMeme.items.splice(gMeme.selectedItemIdx, 1)
+    navItem()
+    //todo: disable all buttons if gMeme.Item.length === 0
 }
 
 function getRandomSetence() {
     return gMemeSetences[getRandomInt(gMemeSetences.length - 1)]
 }
 
-function getCurrentLine() {
-    return gMeme.lines[gMeme.selectedLineIdx]
+function getCurrentItem() {
+    return gMeme.items[gMeme.selectedItemIdx]
+}
+
+function setStickerSize(img) {
+    const { width, height } = img
+    const ratio = height / width
+    let newHeight = 150
+    let newWidth = newHeight / ratio
+    return { width: newWidth, height: newHeight }
+}
+
+
+// TOUCH EVENTS
+function isObjectClicked(pos) {
+    gMeme.items.some((item, idx) => {
+        console.log(pos);
+        switch (item.type) {
+            case 'line':
+                if (isInLine(item, pos)) {
+                    console.log('line');
+                    selectItem(idx)
+                    return true
+                }
+                break
+            case 'sticker':
+                if (isInSticker(item, pos)) {
+                    console.log('sticker');
+                    selectItem(idx)
+                    return true
+                }
+                break
+        }
+    })
 }
 
 
 
+function isInSticker(sticker, pos) {
+    if (
+        pos.y < sticker.y + sticker.height && pos.y > sticker.y
+        && pos.x < sticker.x + sticker.width && pos.x > sticker.x) {
+        return true
+    }
+}
 
-// TOUCH EVENTS
+function isInLine(line, pos) {
+    if (pos.y <= line.y && pos.y >= line.y - line.fontSize &&
+        Math.abs(line.x - pos.x) <= (line.fontSize * line.text.length / 4)) {
+        return true
+    }
+}
 
-function isLineClicked(pos) {
-    gMeme.lines.some((line, idx) => {
-        if (
-            Math.abs(line.pos.y - pos.y) < (line.fontSize / 2) &&
-            Math.abs(line.pos.x - pos.x) < (line.fontSize * line.text.length / 4)) {
-            gMeme.selectedLineIdx = idx
-            getCurrentLine().isDrag = true
-            document.querySelector('canvas').classList.add('grab')
-            return true
-        }
-    })
+function selectItem(idx) {
+    gMeme.selectedItemIdx = idx
+    gMeme.items[idx].isDrag = true
+    document.querySelector('canvas').classList.add('grab')
 }

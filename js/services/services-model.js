@@ -48,8 +48,9 @@ function getImages() {
 }
 
 function filterKeywords(kws) {
-    return kws.some(kw => kw.name.toLowerCase().includes(gFilters.txt.toLowerCase()))
+    return kws.some(kw => kw.name.toLowerCase().includes(gFilters.txt))
 }
+
 // return the wanted size of the keyword on the search-bar. maximum allowed is 2.5em
 function setKeywordSize(value) {
     return Math.min(2.8, 1 + value * 0.2)

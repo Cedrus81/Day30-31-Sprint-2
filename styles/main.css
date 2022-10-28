@@ -203,6 +203,19 @@ canvas.grab{
     grid-template-columns: 1fr 1fr;
 }
 
+.pallete{
+    position: relative;
+}
+
+.pallete input{
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+}
+
 .controllers{
     /* width: 525px;
     height: 546px; */
