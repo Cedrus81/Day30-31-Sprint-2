@@ -4,7 +4,7 @@ const MY_MEME = 'myMemeDB'
 const MEMES_DB = 'memesDB'
 
 var gElCanvas = document.querySelector('canvas')
-var gCtx = document.querySelector('canvas').getContext('2d')
+var gCtx = gElCanvas.getContext('2d')
 
 
 function init() {

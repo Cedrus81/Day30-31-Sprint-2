@@ -201,18 +201,19 @@ header{
 
 
 /* EDITOR MAIN */
-
+.canvas-container{
+    width: 50%;
+    aspect-ratio: 1/1;
+}
 canvas{
-    cursor: grab;
+    /* cursor: grab; */
 }
 canvas.grab{
-    cursor: grabbing;
+    /* cursor: grabbing; */
 }
 
 .editor{
-    margin: auto;
-    grid-gap: 3em;
-    grid-template-columns: 1fr 1fr;
+    gap:1em;
 }
 .pallete{
     position: relative;
@@ -225,6 +226,7 @@ canvas.grab{
 }
 
 .controllers{
+    height: max-content;
     gap: 1em;
     padding-inline: 3em;
     padding-block: 1.5em;

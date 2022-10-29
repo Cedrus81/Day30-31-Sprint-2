@@ -72,7 +72,7 @@ function onNavStickers(value) {
 
 
 function renderMeme() {
-    gCtx.drawImage(gMeme.img, 0, 0, gMeme.img.width, gMeme.img.height)
+    gCtx.drawImage(gMeme.img, 0, 0, gElCanvas.width, gElCanvas.height)
     renderItems()
 }
 
@@ -124,12 +124,12 @@ function addListeners() {
     addMouseListeners()
     addTouchListeners()
     //Listen for resize ev 
-    if (getMeme.img) {
-        window.addEventListener('resize', () => {
-            resizeCanvas()
-            renderMeme()
-        })
-    }
+
+    window.addEventListener('resize', () => {
+        resizeCanvas()
+        renderMeme()
+
+    })
 }
 
 function addMouseListeners() {
@@ -223,3 +223,7 @@ function resizeCanvas() {
     gElCanvas.width = elContainer.offsetWidth
     gElCanvas.height = elContainer.offsetHeight
 }
+
+// function getImgRatio() {
+//     return gMeme.img.height / gMeme.img.width
+// }
