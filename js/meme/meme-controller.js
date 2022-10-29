@@ -221,8 +221,7 @@ function getEvPos(ev) {
 
 function resizeCanvas() {
     const elContainer = document.querySelector('.canvas-container')
-    debugger
-    gElCanvas.width = elContainer.offsetHeight * getRatio()
+    gElCanvas.width = elContainer.offsetHeight / getRatio()
     gElCanvas.height = elContainer.offsetWidth * getRatio()
 }
 
