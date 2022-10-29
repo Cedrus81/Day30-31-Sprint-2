@@ -11,7 +11,7 @@
 
 <body onload="init()">
     <header class="full">
-        <nav class="header-nav flex align-center space-between">
+        <nav class="header-nav flex wrap align-center space-between">
             <a href="./index.html">
                 <h2 class="logo">Memeyahu</h2>
             </a>
@@ -22,17 +22,15 @@
         </nav>
     </header>
     <main>
-        <section class="main-content">
-            <nav class="main-nav full flex space-around">
+        <section class="main-content flex column">
+            <nav class="main-nav full flex space-around wrap">
+                <datalist id="keyList"></datalist>
+                <ul class="keyword-links clear-list flex wrap align-center">
+                </ul>
+                <select class="btn more" onchange="onClickKeyword(this.value)"></select>
+                <button class="btn random-meme" onclick="onRandomMeme()">I'm Flexible</button>
                 <input class="text-input" type="text" placeholder="Search for meme"
                     oninput="onFilterImagesByText(this.value)" list="keyList">
-                <datalist id="keyList"></datalist>
-                <div class="keyword-controls flex ">
-                    <ul class="keyword-links clear-list flex align-center">
-                    </ul>
-                    <button class="btn">More</button>
-                    <button class="btn random-meme" onclick="onRandomMeme()">I'm Flexible</button>
-                </div>
             </nav>
             <article class="main-gallery grid">
             </article>
@@ -43,16 +41,16 @@
                 <canvas height="546" width="476"></canvas>
             </div>
             <article class="controllers flex column space-between align-center">
-                <input type="text" placeholder="Type here your text" oninput="onDrawText(this.value)">
+                <input class="line-text" type="text" placeholder="Type here your text" oninput="onDrawText(this.value)">
                 <section class="line-controls flex align-center">
-                    <button class="btn-editor color-primary" onclick="onNavLine()"><img class="icon-white"
+                    <button class="btn-editor color-primary" onclick="onNavItem()"><img class="icon-white"
                             src="./icons/arrow-down-up-across-line-solid.svg" alt=""></button>
                     <button class="btn-editor color-add" onclick="onAddLine()"><img class="icon-white"
                             src="./icons/plus-solid.svg" alt=""></button>
-                    <button class="btn-editor color-delete" onclick="onRemoveLine()"><img class="icon-white"
+                    <button class="btn-editor color-delete" onclick="onRemoveItem()"><img class="icon-white"
                             src="./icons/trash-solid.svg" alt=""></button>
                 </section>
-                <section class="text-controls flex align-center">
+                <section class="text-controls grid">
                     <button value="1" class="btn-editor" onclick="onSetFontSize(this.value)"><img src="./icons/A+.png"
                             alt=""></button>
                     <button value="-1" class="btn-editor" onclick="onSetFontSize(this.value)"><img src="./icons/A-.png"
@@ -63,11 +61,17 @@
                             src="./icons/align-center-solid.svg" alt=""></button>
                     <button value="left" class="btn-editor" onclick="onSetTextAlign(this.value)"><img
                             src="./icons/align-right-solid.svg" alt=""></button>
-                    <select class="btn-editor">font-select</select>
-                    <button class="btn-editor"><img src="./icons/underline-solid.svg" alt=""></button>
+                    <select class="btn-editor" onchange="onSetFont(this.value)">
+                        <option value="px Impact">Impact</option>
+                        <option value="px bebas">BebasNeue</option>
+                        <option value="px indie">IndieFlower</option>
+                    </select>
+                    <button class="btn-editor pallete">
+                        <img src="./icons/underline-solid.svg" alt="">
+                        <input type="color" onchange="onSetStrokeStyle(this.value)"></button>
                     <button class="btn-editor pallete">
                         <img src="./icons/palette-solid.svg" alt="">
-                        <input class="btn-editor" type="color" onchange="onSelectFillStyle(this.value)">
+                        <input type="color" onchange="onSelectFillStyle(this.value)">
                     </button>
                 </section>
                 <section class="special-controls flex space-between align-center"></section>

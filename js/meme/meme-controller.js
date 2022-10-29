@@ -9,12 +9,13 @@ function onNewMeme(imgId) {
     renderMeme()
 }
 
-function onNavLine() {
-    navLine()
+function onNavItem() {
+    navItem()
+    document.querySelector('.line-text').value = getCurrentItem().text || ''
 }
 
-function onRemoveLine() {
-    removeLine()
+function onRemoveItem() {
+    removeItem()
     renderMeme()
 }
 
@@ -24,10 +25,31 @@ function onAddLine() {
     renderMeme()
 }
 
-function onSetFontSize(value) {
-    setLineFont(+value)
+function onSetFont(font) {
+    setFont(font)
     renderMeme()
 }
+
+function onSetStrokeStyle(color) {
+    setStrokeStyle(color)
+    renderMeme()
+}
+
+
+
+function onSetFontSize(value) {
+    const item = getCurrentItem()
+    switch (item.type) {
+        case 'line':
+            setFontSize(+value, item)
+            break;
+        case 'sticker':
+            zoomSticker(+value, item)
+            break;
+    }
+    renderMeme()
+}
+
 
 function onSelectFillStyle(color) {
     setLineFillStyle(color)
@@ -45,11 +67,12 @@ function onDrawText(text) {
 function onNavStickers(value) {
     setStickersStartIdx(+value)
     renderStickerSelection()
+    console.log(gStickers.startIdx);
 }
 
 
 function renderMeme() {
-    gCtx.drawImage(gMeme.img, 0, 0)
+    gCtx.drawImage(gMeme.img, 0, 0, gMeme.img.width, gMeme.img.height)
     renderItems()
 }
 
@@ -75,6 +98,7 @@ function renderLine(line, x, y) {
 
 
 function onSetTextAlign(value) {
+    if (!getCurrentItem().type === 'line') return
     setTextAlign(value)
     renderMeme()
 }
@@ -100,10 +124,12 @@ function addListeners() {
     addMouseListeners()
     addTouchListeners()
     //Listen for resize ev 
-    window.addEventListener('resize', () => {
-        resizeCanvas()
-        renderMeme()
-    })
+    if (getMeme.img) {
+        window.addEventListener('resize', () => {
+            resizeCanvas()
+            renderMeme()
+        })
+    }
 }
 
 function addMouseListeners() {
@@ -123,6 +149,9 @@ function onDown(ev) {
     ev.preventDefault()
     const pos = getEvPos(ev)
     isObjectClicked(pos)
+    if (getCurrentItem().type === 'line') {
+        document.querySelector('.line-text').value = getCurrentItem().text
+    }
 }
 
 function onUp(ev) {

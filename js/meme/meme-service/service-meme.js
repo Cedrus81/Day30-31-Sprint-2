@@ -39,6 +39,12 @@ function createMeme() {
     addNewLine()
 }
 
+function createRandomMeme() {
+    createMeme()
+    gMeme.img = getRandomImage()
+    gMeme.items[0].fontSize = getRandomInt(58, 16)
+    gMeme.items[0].text = getRandomSetence()
+}
 
 function getMeme() {
     return gMeme
@@ -58,6 +64,7 @@ function addNewLine() {
         font: 'px Impact',
         fillStyle: 'white',
         textAlign: 'center',
+        strokeStyle: '#000000',
         x,
         y,
     }
@@ -83,13 +90,17 @@ function addSticker(sticker) {
 }
 
 function setStickersStartIdx(value) {
-    gStickers.startIdx = Math.abs(gStickers.startIdx + value)
+    gStickers.startIdx = gStickers.startIdx + value
 }
 
 function setMemeImg(imgId) {
     const img = new Image();
     img.src = getImgById(imgId).url
     gMeme.img = img
+}
+
+function setFont(font) {
+    getCurrentItem().font = font
 }
 
 function setMemeText(text) {
@@ -99,32 +110,41 @@ function setMemeText(text) {
 function setLineContext(line) {
     gCtx.font = line.fontSize + line.font
     gCtx.fillStyle = line.fillStyle
+    gCtx.strokeStyle = line.strokeStyle
     gCtx.lineWidth = line.lineWidth
     gCtx.textAlign = line.textAlign
 }
 
 function setTextAlign(value) {
-    getCurrentLine().textAlign = value
+    getCurrentItem().textAlign = value
 }
 
-function setLineFont(value) {
-    const line = getCurrentLine()
+function setFontSize(value, line) {
     line.fontSize += value
 }
 
-function setLineFillStyle(color) {
-    getCurrentLine().fillStyle = color
+function zoomSticker(value, sticker) {
+    sticker.width += sticker.width / 10 * value
+    sticker.height += sticker.height / 10 * value
 }
 
-function navLine() {
+function setLineFillStyle(color) {
+    getCurrentItem().fillStyle = color
+}
+
+function setStrokeStyle(color) {
+    getCurrentItem().strokeStyle = color
+}
+function navItem() {
     gMeme.selectedItemIdx++
     if (gMeme.selectedItemIdx >= gMeme.items.length) gMeme.selectedItemIdx = 0
+
 }
 
 function removeItem() {
     gMeme.items.splice(gMeme.selectedItemIdx, 1)
+    if (!gMeme.items.length) addNewLine()
     navItem()
-    //todo: disable all buttons if gMeme.Item.length === 0
 }
 
 function getRandomSetence() {
@@ -151,14 +171,12 @@ function isObjectClicked(pos) {
         switch (item.type) {
             case 'line':
                 if (isInLine(item, pos)) {
-                    console.log('line');
                     selectItem(idx)
                     return true
                 }
                 break
             case 'sticker':
                 if (isInSticker(item, pos)) {
-                    console.log('sticker');
                     selectItem(idx)
                     return true
                 }

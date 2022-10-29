@@ -3,6 +3,16 @@
     src: url(../fonts/Poppins-Regular.ttf);
 } 
 
+@font-face {
+    font-family: indie;
+    src: url(../fonts/IndieFlower-Regular.ttf);
+}
+
+@font-face {
+    font-family: bebas;
+    src: url(../fonts/BebasNeue-Regular.ttf);
+}
+
 :root{
     --grad1: linear-gradient(-86deg, #33be6d 0%, #0c98b9 100%);
     --grad2: radial-gradient(circle at 12.3% 19.3%, rgb(85, 88, 218) 0%, rgb(95, 209, 249) 100.2%);
@@ -22,8 +32,9 @@ html{
 
 /*  COMPONENTS */
 .btn{
+    height: 2em;
     padding-inline: 1em;
-    font-size: larger;
+    font-size: 1.5em;
     border: none;
     box-shadow: --var(box-shadow);
     border-radius: 28px;
@@ -128,31 +139,28 @@ header{
 /* GALLERY MAIN CONTENT */
 
 .main-content{
+    margin: auto;
     border-radius: 10px;
-    background-color: #383b42;
+    background-color: var(--clr-secondary);
     max-width: 1240px;
-    margin-inline: auto;
-
 }
 .main-nav{
-    padding-block: 1em;
+    width: 90%;
+    gap: 1em;
+    margin-top: 1em;
+    margin-inline: auto;
 }
 
 .text-input{
     border-radius: 2em;
     background-color: #22252c;
+    height: 2em;
     width: 26.5em;
     font-size: 1.6em;
     padding-inline-start: 1em;
     color: var(--clr-1);
     font-weight: 600;
 }
-
-
-.keyword-controls{
-    gap: 1em;
-}
-
 
 
 .random-meme{
@@ -169,6 +177,10 @@ header{
     color: var(--clr-1);
     margin-inline: 0.2em;
     cursor: pointer;
+}
+
+.more option{
+    background-color: #33be6d;
 }
 .main-gallery{
     padding: 1em;
@@ -202,36 +214,52 @@ canvas.grab{
     grid-gap: 3em;
     grid-template-columns: 1fr 1fr;
 }
-
 .pallete{
     position: relative;
 }
 
 .pallete input{
     position: absolute;
-    top:0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     opacity: 0;
 }
 
 .controllers{
-    /* width: 525px;
-    height: 546px; */
+    gap: 1em;
     padding-inline: 3em;
     padding-block: 1.5em;
     border-radius: 30px;
     background-color: #ebeef318;
 }
 
-.controllers input{
+.line-text{
     border: none;
     width: 100%;
-    height: 3em;
+    height: 3rem;
     box-shadow: 1px 5px 0 #bbc4d1, inset 0 5px 0 #ffffff;
     border-radius: 1.525em;
     background-color: #ebeef3;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+.line-controls{
+    gap:1em;
+}
+.text-controls{
+    background-color: #19a59f;
+    padding: 1em;
+    border-radius: 1em;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1em;
+}
+
+.text-controls select{
+    width: 100%;
+    grid-column: 1/4;
+    height: 3rem;
+    font-size: 1.5em;
 }
 
 .btn-editor{
