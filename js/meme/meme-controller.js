@@ -127,11 +127,8 @@ function addListeners() {
     //Listen for resize ev 
 
     window.addEventListener('resize', () => {
-        if (getMeme().img) {
-            resizeCanvas()
-            renderMeme()
-        }
-
+        resizeCanvas()
+        renderMeme()
     })
 }
 
@@ -169,11 +166,12 @@ function onMove(ev) {
     if (!getCurrentItem().isDrag) {
         document.body.style.cursor = 'grab'
         return
+    } else {
+        //Get the ev pos from mouse or touch
+        const { x, y } = getEvPos(ev)
+        moveItem(x, y)
+        renderMeme()
     }
-    //Get the ev pos from mouse or touch
-    const { x, y } = getEvPos(ev)
-    moveItem(x, y)
-    renderMeme()
 }
 
 function moveItem(x, y) {

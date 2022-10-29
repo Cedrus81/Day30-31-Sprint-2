@@ -12,7 +12,6 @@ function init() {
     renderKeywordSelect()
     renderGallery()
     renderStickerSelection()
-    addListeners() // at meme/meme-controller.js
 }
 
 function renderKeywordSelect() {
@@ -70,6 +69,7 @@ function doSwitchDisplay() {
     const elGallery = document.querySelector('.main-content')
     elEditor.classList.toggle('hidden')
     elGallery.classList.toggle('hidden')
+    addListeners() // at meme/meme-controller.js
 }
 
 function onRandomMeme() {

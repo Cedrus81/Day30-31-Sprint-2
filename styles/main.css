@@ -202,12 +202,11 @@ header{
 
 /* EDITOR MAIN */
 .canvas-container{
-    width: 50%;
-    aspect-ratio: 1/1;
-    min-width: 550px;
+    height: 50%;
+    min-height: 550px;
 }
 canvas{
-    
+    height: 100%;
     /* cursor: grab; */
 }
 canvas.grab{
