@@ -163,7 +163,6 @@ function setStickerSize(img) {
     return { width: newWidth, height: newHeight }
 }
 
-
 // TOUCH EVENTS
 function isObjectClicked(pos) {
     gMeme.items.some((item, idx) => {
@@ -184,8 +183,6 @@ function isObjectClicked(pos) {
         }
     })
 }
-
-
 
 function isInSticker(sticker, pos) {
     if (

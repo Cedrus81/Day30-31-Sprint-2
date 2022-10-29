@@ -72,6 +72,7 @@ function onNavStickers(value) {
 
 
 function renderMeme() {
+    resizeCanvas()
     gCtx.drawImage(gMeme.img, 0, 0, gElCanvas.width, gElCanvas.height)
     renderItems()
 }
@@ -126,8 +127,10 @@ function addListeners() {
     //Listen for resize ev 
 
     window.addEventListener('resize', () => {
-        resizeCanvas()
-        renderMeme()
+        if (getMeme().img) {
+            resizeCanvas()
+            renderMeme()
+        }
 
     })
 }
@@ -220,10 +223,12 @@ function getEvPos(ev) {
 
 function resizeCanvas() {
     const elContainer = document.querySelector('.canvas-container')
-    gElCanvas.width = elContainer.offsetWidth
-    gElCanvas.height = elContainer.offsetHeight
+    debugger
+    gElCanvas.width = elContainer.offsetHeight * getRatio()
+    gElCanvas.height = elContainer.offsetWidth * getRatio()
 }
 
-// function getImgRatio() {
-//     return gMeme.img.height / gMeme.img.width
-// }
+function getRatio() {
+    const img = getMeme().img
+    return img.height / img.width
+}

@@ -204,8 +204,10 @@ header{
 .canvas-container{
     width: 50%;
     aspect-ratio: 1/1;
+    min-width: 550px;
 }
 canvas{
+    
     /* cursor: grab; */
 }
 canvas.grab{
@@ -213,7 +215,9 @@ canvas.grab{
 }
 
 .editor{
+    margin: auto;
     gap:1em;
+
 }
 .pallete{
     position: relative;
