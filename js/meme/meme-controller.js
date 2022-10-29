@@ -163,10 +163,8 @@ function onUp(ev) {
 
 function onMove(ev) {
     ev.preventDefault()
-    if (!getCurrentItem().isDrag) {
-        document.body.style.cursor = 'grab'
-        return
-    } else {
+    if (!getCurrentItem().isDrag) return
+    else {
         //Get the ev pos from mouse or touch
         const { x, y } = getEvPos(ev)
         moveItem(x, y)
@@ -225,7 +223,3 @@ function resizeCanvas() {
     gElCanvas.height = elContainer.offsetWidth * getRatio()
 }
 
-function getRatio() {
-    const img = getMeme().img
-    return img.height / img.width
-}

@@ -28,6 +28,7 @@
 
 html{
     font-family: poppins;
+    
 }
 
 /*  COMPONENTS */
@@ -99,6 +100,7 @@ html{
 
 /* MAIN */
 body{
+    cursor: default;
     background-color: #22252c;
 }
 /* HEADER */
@@ -207,10 +209,10 @@ header{
 }
 canvas{
     height: 100%;
-    /* cursor: grab; */
+    cursor: grab;
 }
 canvas.grab{
-    /* cursor: grabbing; */
+    cursor: grabbing;
 }
 
 .editor{
@@ -273,6 +275,7 @@ canvas.grab{
     box-shadow: 1px 5px 0 rgba(92, 92, 92, 0.55), inset 0 5px 0 rgba(255, 255, 255, 0.58);
     border-radius: 10px;
     background-color: rgba(255, 255, 255, 0.829);
+    cursor: pointer;
 }
 
 .color-add{

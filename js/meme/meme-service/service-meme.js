@@ -50,6 +50,11 @@ function getMeme() {
     return gMeme
 }
 
+function getRatio() {
+    const img = getMeme().img
+    return img.height / img.width
+}
+
 function getContext() {
     return gCtx
 }
