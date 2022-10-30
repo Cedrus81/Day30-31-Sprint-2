@@ -1,5 +1,10 @@
 const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
 
+const drawOutline = {
+    sticker: outlineSticker,
+    line: outlineText
+}
+
 function onNewMeme(imgId) {
     //model
     createMeme()
@@ -11,7 +16,10 @@ function onNewMeme(imgId) {
 
 function onNavItem() {
     navItem()
-    document.querySelector('.line-text').value = getCurrentItem().text || ''
+    const item = getCurrentItem()
+    document.querySelector('.line-text').value = item.text || ''
+    renderMeme()
+    drawOutline[item.type](item)
 }
 
 function onRemoveItem() {
@@ -67,7 +75,6 @@ function onDrawText(text) {
 function onNavStickers(value) {
     setStickersStartIdx(+value)
     renderStickerSelection()
-    console.log(gStickers.startIdx);
 }
 
 
@@ -152,9 +159,27 @@ function onDown(ev) {
     const item = getCurrentItem()
     if (item.text && item.text !== 'New Line') document.querySelector('.line-text').value = item.text
     else document.querySelector('.line-text').value = ''
+    drawOutline[item.type](item)
+}
+
+
+function outlineText(item) {
+    const { x, y, fontSize, text } = item
+    const startX = x - (text.length * fontSize / 4)
+    const startY = y - fontSize
+    const width = (text.length * fontSize / 2)
+    const height = fontSize + 10
+    gCtx.rect(startX, startY, width, height)
+    gCtx.stroke()
 
 }
 
+function outlineSticker(item) {
+    // gCtx.strokeStyle = gCtx
+    const { x, y, width, height } = item
+    gCtx.rect(x, y, width, height)
+    gCtx.stroke()
+}
 
 function onUp(ev) {
     ev.preventDefault()
@@ -165,12 +190,14 @@ function onUp(ev) {
 
 function onMove(ev) {
     ev.preventDefault()
-    if (!getCurrentItem().isDrag) return
+    const item = getCurrentItem()
+    if (!item.isDrag) return
     else {
         //Get the ev pos from mouse or touch
         const { x, y } = getEvPos(ev)
         moveItem(x, y)
         renderMeme()
+        drawOutline[item.type](item)
     }
 }
 
@@ -222,7 +249,6 @@ function getEvPos(ev) {
 function resizeCanvas() {
     const elContainer = document.querySelector('.canvas-container')
     const { offsetHeight, offsetWidth } = elContainer
-    console.log(offsetHeight, offsetWidth);
     gElCanvas.width = offsetWidth
     gElCanvas.height = offsetWidth * getMeme().img.ratio
 }
