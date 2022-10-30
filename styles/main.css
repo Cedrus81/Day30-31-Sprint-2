@@ -232,8 +232,11 @@ header{
 
 /* EDITOR MAIN */
 .canvas-container{
+    width: 60%;
+    min-width: 600px;
 }
 canvas{
+    width: 100%;
     cursor: grab;
 }
 canvas.grab{

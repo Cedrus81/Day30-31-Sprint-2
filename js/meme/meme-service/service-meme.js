@@ -106,6 +106,7 @@ function setStickersStartIdx(value) {
 function setMemeImg(imgId) {
     const img = new Image();
     img.src = getImgById(imgId).url
+    img.ratio = img.height / img.width
     gMeme.img = img
 }
 

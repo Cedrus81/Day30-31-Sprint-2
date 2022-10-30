@@ -221,7 +221,24 @@ function getEvPos(ev) {
 
 function resizeCanvas() {
     const elContainer = document.querySelector('.canvas-container')
-    gElCanvas.width = elContainer.offsetWidth
-    gElCanvas.height = elContainer.offsetHeight
+    const { offsetHeight, offsetWidth } = elContainer
+    const ratioWidth = offsetWidth * gMeme.img.ratio
+    const ratioHeight = offsetHeight * gMeme.img.ratio
+
+    /* if (window.innerWidth > 980 || window.innerWidth < 740) {
+        gElCanvas.width = 600
+    }
+    if (window.innerWidth > 740 && window.innerWidth < 980) {
+        gElCanvas.height = 400
+    }
+
+    elContainer.offsetHeight = elContainer.offsetWidth / gMeme.img.ratio */
+    console.log(offsetHeight, offsetWidth);
+    gElCanvas.width = offsetWidth
+    gElCanvas.height = offsetHeight
 }
 
+function getCanvasSize() {
+    const elContainer = document.querySelector('.canvas-container')
+
+}
