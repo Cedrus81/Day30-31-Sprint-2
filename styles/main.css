@@ -33,6 +33,7 @@ html{
 
 /*  COMPONENTS */
 .btn{
+    user-select: none;
     height: 2em;
     padding-inline: 1em;
     font-size: 1.5em;
@@ -147,6 +148,7 @@ header{
     max-width: 1240px;
 }
 .main-nav{
+    align-items: center;
     width: 90%;
     gap: 1em;
     margin-top: 1em;
@@ -170,6 +172,7 @@ header{
 }
 
 .keyword-links{
+    padding: 0.2em;
     box-shadow: var(--box-shadow);
     border-radius: 25px;
     background-color: #fefefe59;
@@ -181,19 +184,40 @@ header{
     cursor: pointer;
 }
 
-.more option{
+.more {
+   position: relative;
+}
+.dropdown-menu{
+    pointer-events: auto;
+    position: absolute;
+    top: calc(100% + 0.25rem);
+    left: 0;
     background-color: #33be6d;
+    padding: 0.75rem;
+    border-radius: .25rem;
+    box-shadow: var(--box-shadow);
+    opacity:0.9;
+    /* transform: translateY(-1em); */
+    transition: 0.2s opacity ease-in-out, 0.2s transform ease-in-out;
+}
+
+.dropdown-menu.opaque{
+    opacity: 0;
+    transform: translateY(-0.75em);
+    pointer-events: none;
+
 }
 .main-gallery{
     padding: 1em;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(250px, 270px));
     grid-auto-rows: 270px;
+    /* grid-auto-flow: dense; */
     grid-gap: 1em;
 }
 
 .gallery-item{
     border-radius:1.5em;
-    width: 100%;
+    /* width: 100%; */
     height: 100%;
     object-fit: contain;
 }

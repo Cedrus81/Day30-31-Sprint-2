@@ -60,7 +60,7 @@ function getContext() {
 }
 
 function addNewLine() {
-    const { x, y } = { x: gElCanvas.width / 2, y: gElCanvas.height / 8 }
+    const { x, y } = { x: gElCanvas.width / 2, y: gElCanvas.height / 2 }
     const newLine = {
         type: 'line',
         isDragged: false,
@@ -172,6 +172,10 @@ function setStickerSize(img) {
 function isObjectClicked(pos) {
     gMeme.items.some((item, idx) => {
         console.log(pos);
+        // const funcs = {
+        //     line:isInLine
+        // }
+        // funcs[item.type]()
         switch (item.type) {
             case 'line':
                 if (isInLine(item, pos)) {
@@ -198,10 +202,10 @@ function isInSticker(sticker, pos) {
 }
 
 function isInLine(line, pos) {
-    if (pos.y <= line.y && pos.y >= line.y - line.fontSize &&
-        Math.abs(line.x - pos.x) <= (line.fontSize * line.text.length / 4)) {
-        return true
-    }
+    return (pos.y <= line.y && pos.y >= line.y - line.fontSize &&
+        Math.abs(line.x - pos.x) <= (line.fontSize * line.text.length / 4))
+    // return true
+
 }
 
 function selectItem(idx) {

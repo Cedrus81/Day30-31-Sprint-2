@@ -28,7 +28,10 @@
                 <datalist id="keyList"></datalist>
                 <ul class="keyword-links clear-list flex wrap align-center">
                 </ul>
-                <select class="btn more" onchange="onClickKeyword(this.value)"></select>
+                <div class="btn more" onclick="onToggleDropDown(this)">More
+                    <div class="dropdown-menu opaque">
+                    </div>
+                </div>
                 <button class="btn random-meme" onclick="onRandomMeme()">I'm Flexible</button>
                 <input class="text-input" type="text" placeholder="Search for meme"
                     oninput="onFilterImagesByText(this.value)" list="keyList">

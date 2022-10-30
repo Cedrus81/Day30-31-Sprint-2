@@ -9,16 +9,20 @@ var gCtx = gElCanvas.getContext('2d')
 
 function init() {
     renderKeywords()
-    renderKeywordSelect()
+    renderKeywordDropdown()
     renderGallery()
     renderStickerSelection()
 }
 
-function renderKeywordSelect() {
-    const elSelect = document.querySelector('.more')
-    let strHTML = '<option value="" selected>More</option>'
-    getKeyWords().forEach(kw => strHTML += `<option value="${kw.name}">${kw.name}</option>`)
-    elSelect.innerHTML = strHTML
+function onToggleDropDown(elDropdown) {
+    elDropdown.querySelector('.dropdown-menu').classList.toggle('opaque')
+}
+
+function renderKeywordDropdown() {
+    const elMenu = document.querySelector('.dropdown-menu')
+    let strHTML = `<div onclick="onClickKeyword('')">All</div>`
+    getKeyWords().forEach(kw => strHTML += `<div onclick="onClickKeyword('${kw.name}')">${kw.name}</div>`)
+    elMenu.innerHTML = strHTML
 }
 
 function renderStickerSelection() {
