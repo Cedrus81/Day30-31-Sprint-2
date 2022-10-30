@@ -19,6 +19,11 @@ var gMemeSetences = [
     `If you have crazy friends you have everything you’ll ever need.`,
 ]
 
+const isIn = {
+    line: isInLine,
+    sticker: isInSticker
+}
+
 var gStickers = {
     startIdx: 0,
     stickers: [
@@ -168,43 +173,42 @@ function setStickerSize(img) {
     return { width: newWidth, height: newHeight }
 }
 
+
 // TOUCH EVENTS
 function isObjectClicked(pos) {
     gMeme.items.some((item, idx) => {
         console.log(pos);
-        // const funcs = {
-        //     line:isInLine
-        // }
-        // funcs[item.type]()
-        switch (item.type) {
-            case 'line':
-                if (isInLine(item, pos)) {
-                    selectItem(idx)
-                    return true
-                }
-                break
-            case 'sticker':
-                if (isInSticker(item, pos)) {
-                    selectItem(idx)
-                    return true
-                }
-                break
+        if (isIn[item.type](item, pos)) {
+            selectItem(idx)
+            return true
         }
+        // switch (item.type) {
+        //     case 'line':
+        //         if (isInLine(item, pos)) {
+        //             selectItem(idx)
+        //             return true
+        //         }
+        //         break
+        //     case 'sticker':
+        //         if (isInSticker(item, pos)) {
+        //             selectItem(idx)
+        //             return true
+        //         }
+        //         break
+        // }
     })
 }
 
 function isInSticker(sticker, pos) {
-    if (
+    return (
         pos.y < sticker.y + sticker.height && pos.y > sticker.y
-        && pos.x < sticker.x + sticker.width && pos.x > sticker.x) {
-        return true
-    }
+        && pos.x < sticker.x + sticker.width && pos.x > sticker.x)
+
 }
 
 function isInLine(line, pos) {
     return (pos.y <= line.y && pos.y >= line.y - line.fontSize &&
         Math.abs(line.x - pos.x) <= (line.fontSize * line.text.length / 4))
-    // return true
 
 }
 

@@ -40,7 +40,7 @@
             </article>
         </section>
 
-        <section class="editor flex wrap space-evenly hidden">
+        <section class="editor flex wrap space-between hidden">
             <div class="canvas-container flex">
                 <canvas></canvas>
             </div>
@@ -72,10 +72,10 @@
                     </select>
                     <button class="btn-editor pallete">
                         <img src="./icons/underline-solid.svg" alt="">
-                        <input type="color" onchange="onSetStrokeStyle(this.value)"></button>
+                        <input type="color" oninput="onSetStrokeStyle(this.value)"></button>
                     <button class="btn-editor pallete">
                         <img src="./icons/palette-solid.svg" alt="">
-                        <input type="color" onchange="onSelectFillStyle(this.value)">
+                        <input type="color" oninput="onSelectFillStyle(this.value)">
                     </button>
                 </section>
                 <section class="special-controls flex space-between align-center"></section>

@@ -149,10 +149,12 @@ function onDown(ev) {
     ev.preventDefault()
     const pos = getEvPos(ev)
     isObjectClicked(pos)
-    if (getCurrentItem().type === 'line') {
-        document.querySelector('.line-text').value = getCurrentItem().text
-    }
+    const item = getCurrentItem()
+    if (item.text && item.text !== 'New Line') document.querySelector('.line-text').value = item.text
+    else document.querySelector('.line-text').value = ''
+
 }
+
 
 function onUp(ev) {
     ev.preventDefault()
@@ -219,7 +221,7 @@ function getEvPos(ev) {
 
 function resizeCanvas() {
     const elContainer = document.querySelector('.canvas-container')
-    gElCanvas.width = elContainer.offsetHeight / getRatio()
-    gElCanvas.height = elContainer.offsetWidth * getRatio()
+    gElCanvas.width = elContainer.offsetWidth
+    gElCanvas.height = elContainer.offsetHeight
 }
 
