@@ -224,7 +224,7 @@ function resizeCanvas() {
     const { offsetHeight, offsetWidth } = elContainer
     console.log(offsetHeight, offsetWidth);
     gElCanvas.width = offsetWidth
-    gElCanvas.height = offsetWidth * gMeme.img.ratio
+    gElCanvas.height = offsetWidth * getMeme().img.ratio
 }
 
 function getCanvasSize() {
